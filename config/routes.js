@@ -32,6 +32,12 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+
+  '/': {
+    controller: 'Index',
+    action: 'index'
+  },
+  
   '/user/add/': {
     controller: 'User',
     action: 'add'
@@ -40,6 +46,21 @@ module.exports.routes = {
   '/user/list/': {
     controller: 'User',
     action: 'list'
+  },
+
+  '/catalog/': {
+    controller: 'Catalog',
+    action: 'index'
+  },
+
+  '/product/': {
+    controller: 'Product',
+    action: 'index'
+  },
+
+  '/cms/': {
+    controller: 'Cms',
+    action: 'index'
   }
 
   /***************************************************************************
