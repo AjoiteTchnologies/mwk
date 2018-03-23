@@ -21,9 +21,22 @@ module.exports = {
 			res.view(responseObj);
 		})
 	},
-
+	
 	add: function(req, res){
-		res.view('user/create');
+		var id = req.param('id');
+
+		if(id != '' && id != null && id != undefined){
+			User.findOne({id: req.param('id')})
+			.exec(function(err, user){
+				if(err){
+					res.send(500, {error: err.message});
+				}
+				res.view('user/create', {user: user});
+			})
+		}
+		else {
+			res.view('user/create');
+		}
 	},
 
 	create: function(req, res){		
@@ -65,16 +78,7 @@ module.exports = {
 			}
 			res.redirect('user/list');
 		})
-	},
-
-	edit: function(req, res){
-		User.findOne({id: req.param('id')})
-		.exec(function(err, user){
-			if(err){
-				res.send(500, {error: err.message});
-			}
-			res.view('user/create', {user: user});
-		})
 	}
+	
 };
 
