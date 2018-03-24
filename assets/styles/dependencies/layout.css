@@ -1,0 +1,36 @@
+.nav-block {
+	text-align: center;
+	width: 700px;
+}
+.cart-block {
+
+}
+.nav-block {
+	width: 900px;
+	padding-top: 16px
+}
+.top-header {
+	width: 100%;
+	color: #ffcbdf;
+	background-color:#fc2c7b;
+	height: 28px;
+	line-height: 25px;
+	font-size: 13px;
+	
+	text-align: right;
+	padding-right: 35px;	
+	display: inline-block;
+}
+
+.nav-block a {
+	color : #333;
+	text-decoration: none;
+	margin: 0 10px;
+	text-transform: uppercase;
+	font-size: 14px;
+	font-family: 'open sans';
+}
+.cart-block a {
+	margin:5px 12px 0;
+	display: inline-block;
+}

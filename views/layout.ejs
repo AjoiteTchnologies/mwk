@@ -27,11 +27,21 @@
             + Import stylesheets from other directories
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
-
+    <link rel="stylesheet" href="/styles/common/reset.css">
+    <link rel="stylesheet" href="/styles/common/frameword.css">
+    <link rel="stylesheet" href="/styles/common/layout.css">
+    <link rel="stylesheet" href="/styles/catalog/catalog.css">
+    <link rel="stylesheet" href="/styles/cms/cms.css">
+    <link rel="stylesheet" href="/styles/dependencies/common.css">
+    <link rel="stylesheet" href="/styles/index/index.css">
+    <link rel="stylesheet" href="/styles/product/product.css">
     <!--STYLES-->
     <link rel="stylesheet" href="/styles/catalog/catalog.css">
     <link rel="stylesheet" href="/styles/cms/cms.css">
     <link rel="stylesheet" href="/styles/dependencies/common.css">
+    <link rel="stylesheet" href="/styles/dependencies/framework.css">
+    <link rel="stylesheet" href="/styles/dependencies/layout.css">
+    <link rel="stylesheet" href="/styles/dependencies/reset.css">
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/index/index.css">
     <link rel="stylesheet" href="/styles/product/product.css">
@@ -39,58 +49,35 @@
   </head>
 
   <body>
+  <div class="page-wrapper">
+    <div class="top-header">
+      support@myweddingknot.com &nbsp; &nbsp; &nbsp; &nbsp; 91-9811637373
+    </div>
+    <div class="header p20">
+      <div class="logo-block fl">
+        <a href="/" class="ml10"><img src="/images/myweddingknot-logo.jpg"></a>
+      </div>
+      <div class="nav-block fl">
+        <a href="">Wedding Invitations</a>
+        <a href="">Other Invitations</a>
+        <a href="">Wedding Shop</a>
+        <a href="">Inspirations</a>
+        <a href="">Blog</a>
+
+      </div>
+      <div class="cart-block fr pr10">
+        <a href=""><img src="/images/bag-icon.png"></a>
+        <!--<a href=""><img src="/images/user-icon.png"></a>-->
+        <a href=""><img src="/images/menu-icon2.png"></a>
+      </div>
+      <div class="clear"></div>
+    </div>
+    
     <%- body %>
 
 
 
-    <!--
-        Client-side Templates
-        ========================
-
-        HTML templates are important prerequisites of modern, rich client applications.
-        To work their magic, frameworks like Backbone, Angular, Ember, and Knockout require
-        that you load these templates client-side.
-
-        By default, your Gruntfile is configured to automatically load and precompile
-        client-side JST templates in your `assets/templates` folder, then
-        include them here automatically (between TEMPLATES and TEMPLATES END).
-
-        To customize this behavior to fit your needs, just edit `tasks/pipeline.js`.
-        For example, here are a few things you could do:
-
-            + Import templates from other directories
-            + Use a different template engine (handlebars, jade, dust, etc.)
-            + Internationalize your client-side templates using a server-side
-              stringfile before they're served.
-    -->
-
-    <!--TEMPLATES-->
-    
-    <!--TEMPLATES END-->
-
-
-    <!--
-
-      Client-side Javascript
-      ========================
-
-      You can always bring in JS files manually with `script` tags, or asynchronously
-      on the client using a solution like AMD (RequireJS).  Or, if you like, you can
-      take advantage of Sails' conventional asset pipeline (boilerplate Gruntfile).
-
-      By default, files in your `assets/js` folder are included here
-      automatically (between SCRIPTS and SCRIPTS END).  Both JavaScript (.js) and
-      CoffeeScript (.coffee) are supported. In production, your scripts will be minified
-      and concatenated into a single file.
-
-      To customize any part of the built-in behavior, just edit `tasks/pipeline.js`.
-      For example, here are a few things you could do:
-
-          + Change the order of your scripts
-          + Import scripts from other directories
-          + Use a different preprocessor, like TypeScript
-
-    -->
+  </div>
 
     <!--SCRIPTS-->
     <script src="/js/dependencies/sails.io.js"></script>
