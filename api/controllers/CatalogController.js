@@ -6,11 +6,44 @@
  */
 
 module.exports = {
+
 	index: function(req, res){
 		var responseObj = {
-			layout : 'layout'
+			layout : 'layout',
+			list : []
 		};
-		res.view(responseObj);
+		Catalog.find({}).exec(function(err, list){
+			if(err){
+				res.send(500, 'Something went wrong!!')
+			}
+			else {
+				responseObj.list = list;
+
+				sails.log(list)
+				res.view(responseObj);
+			}
+		});
+		// res.view(responseObj);
+	},
+
+	add: function(req, res){
+		res.view('catalog/add')
+	},
+
+	create: function(req, res){
+		var responseObj = {
+			layout : 'layout',
+			productid : req.body.productid,
+			productname : req.body.productname,
+			price : req.body.price
+		};
+		Catalog.create(responseObj).exec(function(err){
+			if(err){
+				res.send(500, 'Something went wrong!!')
+			}
+			else {
+				res.redirect('catalog');
+			}
+		})
 	}
 };
-
