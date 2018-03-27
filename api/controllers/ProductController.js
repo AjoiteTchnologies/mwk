@@ -8,9 +8,19 @@
 module.exports = {
 	index: function(req, res){
 		var responseObj = {
-			layout : 'layout'
+			layout : 'layout',
+			id : req.param('id')
 		};
-		res.view(responseObj);
+		sails.log(responseObj.id);
+		Catalog.findOne({id : responseObj.id}).exec(function(err, list){
+			sails.log(list)
+			if(err){
+				res.send(500, 'Something went wrong!')
+			}
+			else {
+				res.view('product/index', {list : list});
+			}
+		})
 	}
 };
 

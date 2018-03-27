@@ -1,1 +1,9 @@
 Product Page
+<% if(typeof list == 'object' && list){ %>
+	<%= list.id %><br /><br />
+	<%= list.productid %><br /><br />
+	<%= list.productname %><br /><br />
+	<%= list.price %><br /><br />
+	<input type="submit" value="Buy Now">
+<% } %>
+

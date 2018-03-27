@@ -58,7 +58,7 @@ module.exports.routes = {
     action: 'add'
   },
 
-  '/product/': {
+  '/product/:id': {
     controller: 'Product',
     action: 'index'
   },

@@ -18,8 +18,6 @@ module.exports = {
 			}
 			else {
 				responseObj.list = list;
-
-				sails.log(list)
 				res.view(responseObj);
 			}
 		});
