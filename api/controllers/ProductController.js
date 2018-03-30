@@ -11,9 +11,7 @@ module.exports = {
 			layout : 'layout',
 			id : req.param('id')
 		};
-		sails.log(responseObj.id);
 		Catalog.findOne({id : responseObj.id}).exec(function(err, list){
-			sails.log(list)
 			if(err){
 				res.send(500, 'Something went wrong!')
 			}
@@ -22,5 +20,6 @@ module.exports = {
 			}
 		})
 	}
+	
 };
 

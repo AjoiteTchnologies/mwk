@@ -63,6 +63,16 @@ module.exports.routes = {
     action: 'index'
   },
 
+  '/cart/:id' : {
+    controller: 'Cart',
+    action: 'index'
+  },
+
+  '/header' : {
+    controller: 'Ajax',
+    action: 'login'
+  },
+
   '/cms/': {
     controller: 'Cms',
     action: 'index'

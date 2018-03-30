@@ -34,3 +34,33 @@
 	margin:5px 12px 0;
 	display: inline-block;
 }
+
+/* login / signup css starts here */
+.login-signup-form {
+	display: none;
+	position: fixed;
+	left: 40%;
+	top: 40%;
+	z-index: 2;
+}
+
+.login-signup-form input {
+	border: 1px solid #333;
+}
+
+.login-signup-form label {
+	width: 100px;
+	display: inline-block;
+}
+
+.overlay {
+	display: none;
+	position: fixed;
+	background: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+/* login / signup css ends here */
