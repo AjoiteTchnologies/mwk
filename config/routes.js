@@ -63,7 +63,7 @@ module.exports.routes = {
     action: 'index'
   },
 
-  '/cart/:id' : {
+  '/cart/' : {
     controller: 'Cart',
     action: 'index'
   },

@@ -48,7 +48,25 @@ try {
 		// cart view from local storage
 		var cartLocalView = function(){
 			if(localStorage){
-				console.log(localStorage.getItem('id', 'price'));	
+				var $pIds = JSON.parse(localStorage.getItem('cart')),
+					$idArr = [];
+					// $idArr = {};
+				$.each($pIds, function(index, value){
+					$idArr.push($pIds[index].id);
+					// $idArr.id = $pIds[index].idArr;
+				});
+					
+				$.ajax({
+					'url' : '/cart',
+					'method' : 'POST',
+					'data' : JSON.stringify($idArr)
+					'success' : function(response) {
+						console.log(response);
+					},
+					'failure' : function(error){
+						console.log(error);
+					}
+				});
 			}
 		};
 		
@@ -57,13 +75,11 @@ try {
 			$(document).on('click', '.cart-add', function(e){
 				var $this = $(this);
 				cartLocalStorage(e, $this);
-				// $this.closest($('form')).submit();
+				cartLocalView();
 			});
 
-
-
 			//functions to call on page load will come here 
-			// cartLocalView();
+			
 		});
 
 		window.cartLocalStorage = cartLocalStorage;
