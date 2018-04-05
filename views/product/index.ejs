@@ -1,6 +1,6 @@
 Product Page
 <% if(typeof list == 'object' && list){ %>
-	<form action="/cart/<%= list.id %>" method="POST" >
+	<form action="/cart/" method="POST" >
 		<span class="product-id" data-value="id"><%= list.id %></span><br /><br />
 		<span data-value="productid"><%= list.productid %></span><br /><br />
 		<span data-value="productName"><%= list.productname %></span><br /><br />

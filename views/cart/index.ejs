@@ -1,8 +1,15 @@
 Cart Page<br /><br />
 
-<% if(typeof list == 'object' && list){ %>
+<% if(typeof list == 'object' && list){%>
 	
-	<%= list.productname %><br /><br />
-	<%= list.price %><br /><br />
+	<% _.each(list, function(index, value){ %>
+		<label><%= list[value].productname %></label>
+
+		<label><%= list[value].productid %></label> 
+
+		<label><%= list[value].price %></label> <br /><br />
+
+		<!-- <label><%= list[value].productname %></label> <br /><br /> -->
+	<% }); %>
 
 <% } %>

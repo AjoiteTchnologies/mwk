@@ -29,19 +29,19 @@ try {
 
 				if($counter == true) {
 					localStorage.setItem('cart', JSON.stringify($key));
-					console.log($key);
+					// console.log($key);
 				}
 				else {
 					$key.push($obj);
 					localStorage.setItem('cart', JSON.stringify($key));
-					console.log($key);			
+					// console.log($key);			
 				}
 			}
 			else {
 				$arr.push($obj);
 				localStorage.setItem('cart', JSON.stringify($arr));
 				var abc = localStorage.getItem('cart');
-				console.log($key);
+				// console.log($key);
 			}
 		};
 
@@ -49,17 +49,19 @@ try {
 		var cartLocalView = function(){
 			if(localStorage){
 				var $pIds = JSON.parse(localStorage.getItem('cart')),
-					$idArr = [];
-					// $idArr = {};
-				$.each($pIds, function(index, value){
-					$idArr.push($pIds[index].id);
-					// $idArr.id = $pIds[index].idArr;
-				});
-					
+					$idObj = {},
+					$key = 'product';
+
+				// console.log(typeof($pIds[1]), $pIds.length);
+				for(var i=0; i<$pIds.length; i++){					
+					$idObj['product'+i] = $pIds[i];
+				}				
+				// console.log($idObj);
+
 				$.ajax({
 					'url' : '/cart',
 					'method' : 'POST',
-					'data' : JSON.stringify($idArr)
+					'data' : $idObj,
 					'success' : function(response) {
 						console.log(response);
 					},
@@ -75,6 +77,7 @@ try {
 			$(document).on('click', '.cart-add', function(e){
 				var $this = $(this);
 				cartLocalStorage(e, $this);
+				$this.closest('form').submit();
 				cartLocalView();
 			});
 
