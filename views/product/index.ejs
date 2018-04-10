@@ -1,11 +1,12 @@
 Product Page
 <% if(typeof list == 'object' && list){ %>
-	<form action="/cart/" method="POST" >
-		<span class="product-id" data-value="id"><%= list.id %></span><br /><br />
-		<span data-value="productid"><%= list.productid %></span><br /><br />
-		<span data-value="productName"><%= list.productname %></span><br /><br />
-		<span data-value="price"><%= list.price %></span><br /><br />
-		<input type="text" class="qty" name="" style="border:1px solid #333" /><br /><br />
+	<form action="/cart/" method="POST" id="buy-now-form" >
+		<input type="hidden" class="product-id" name="productid" value="<%= list.id %>" /><br /><br />
+		<input type="hidden" class="cart-storage" name="localdata" /><br /><br />
+		<span><%= list.productid %></span><br /><br />
+		<span><%= list.productname %></span><br /><br />
+		<span><%= list.price %></span><br /><br />
+		<input type="text" class="qty" name="qty" style="border:1px solid #333" /><br /><br />
 		<input type="submit" value="Buy Now" class="cart-add">
 	</form>
 <% } %>

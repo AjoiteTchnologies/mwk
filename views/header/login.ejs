@@ -2,39 +2,33 @@
 <a href="javascript:void(0)" data-href="signup-form" class="login-signup-link">Signup</a>
 
 <div class="login-signup-form" id="login-form">
-	<form>
-		<label>Username</label>
-		<input type="" name="username" /><br /><br />
+	<form action="/ajax/login" method="POST">
+		<label>Email - Id</label>
+		<input type="" name="email" /><br /><br />
 
 		<label>Password</label>
 		<input type="" name="password" /><br /><br />
 
-		<input type="submit" name="" value="login" />
+		<input type="submit" class="signup-login" name="" value="login" />
 
 	</form>
 </div>
 
 <div class="login-signup-form" id="signup-form">
-	<form>
-		<label>First Name</label>
-		<input type="" name="firstname" /><br /><br />
-
-		<label>Last Name</label>
-		<input type="" name="lastname" /><br /><br />
+	<form action="/ajax/signup" method="POST">
+		<label>Full Name</label>
+		<input type="" name="fullname" /><br /><br />
 
 		<label>Email</label>
 		<input type="" name="email" /><br /><br />
 
 		<label>Password</label>
-		<input type="" name="Password" /><br /><br />
+		<input type="" name="password" /><br /><br />
 
 		<label>Mobile</label>
 		<input type="" name="mobile" /><br /><br />
 
-		<label>Gender</label>
-		<input type="" name="gender" /><br /><br />
-
-		<input type="submit" id="signup-btn" name="" value="Register" />
+		<input type="submit" class="signup-login" name="" value="Register" />
 
 	</form>
 </div>

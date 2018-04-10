@@ -12,7 +12,8 @@ module.exports = {
 			layout : 'layout',
 			list : []
 		};
-		Catalog.find({}).exec(function(err, list){
+		Catalog.find({})
+		.exec(function(err, list){
 			if(err){
 				res.send(500, 'Something went wrong!!')
 			}

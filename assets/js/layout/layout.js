@@ -29,15 +29,45 @@ try {
 		}
 
 		// new user signup function
-		var signup = function(){
+		var signup = function(e, el){
+			e.preventDefault();
+			var $container = el.closest('div'),
+				$id =$container.attr('id'),
+				$form = $container.find($('form')),
+				$url = $form.attr('action'),
+				$formData = {};
+
+			if($id == 'login-form') {
+				$formData = {
+					'email' : $form.find($('input[name=email]')).val(),
+					'password' : $form.find($('input[name=password]')).val()
+				}
+			}
+			else {
+				$formData = {
+					'fullname' : $form.find($('input[name=fullname]')).val(),
+					'email' : $form.find($('input[name=email]')).val(),
+					'password' : $form.find($('input[name=password]')).val(),
+					'mobile' : $form.find($('input[name=mobile]')).val()
+				}
+			}
+			
 			$.ajax({
-				url: '',
+				url: $url,
 				type: 'POST',
-				data: $('#signup-form').serialize(),
+				data: $formData,
 				success: function(data){
 					console.log(data);
+				},
+				failure: function(){
+					console.log('fail');
 				}
 			});
+		}
+
+		// login or signup ajax call
+		var userAuth = function(){
+
 		}
 
 		$doc.ready(function(){
@@ -58,9 +88,8 @@ try {
 				});
 
 				// call signup function
-				$doc.on('click', '#signup-btn', function(e){
-					// e.preventDefault();
-					signup();
+				$doc.on('click', '.signup-login', function(e){					
+					signup(e, $(this));
 				});
 
 		});

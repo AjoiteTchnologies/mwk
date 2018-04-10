@@ -70,7 +70,7 @@ module.exports.routes = {
 
   '/header' : {
     controller: 'Ajax',
-    action: 'login'
+    action: 'header'
   },
 
   '/cms/': {

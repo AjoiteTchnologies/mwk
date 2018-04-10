@@ -23,7 +23,7 @@ module.exports = {
 	},
 
 	add: function(req, res){
-		res.view('user/add');
+		res.view('user/create');
 	},
 
 	create: function(req, res){		
