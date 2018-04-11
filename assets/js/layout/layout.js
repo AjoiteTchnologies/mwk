@@ -29,18 +29,17 @@ try {
 		}
 
 		// new user signup function
-		var signup = function(e, el){
+		var signuplogin = function(e, el){
 			e.preventDefault();
 			var $container = el.closest('div'),
-				$id =$container.attr('id'),
+				$id = $container.attr('id'),
 				$form = $container.find($('form')),
 				$url = $form.attr('action'),
 				$formData = {};
 
 			if($id == 'login-form') {
 				$formData = {
-					'email' : $form.find($('input[name=email]')).val(),
-					'password' : $form.find($('input[name=password]')).val()
+					'email' : $form.find($('input[name=email]')).val()
 				}
 			}
 			else {
@@ -57,7 +56,19 @@ try {
 				type: 'POST',
 				data: $formData,
 				success: function(data){
-					console.log(data);
+					if(data == 'done'){
+						console.log('Successfully Signed Up!');
+					}
+					else {
+						if(data == ''){
+							console.log('Email id does not exist!');
+						}
+						else {							
+							var $validUser = userAuth(data, $form),
+								$validmsg = $validUser == true ? 'Successfully LoggedIn!' : 'Password does not match!';
+							console.log($validmsg);
+						}
+					}
 				},
 				failure: function(){
 					console.log('fail');
@@ -66,8 +77,18 @@ try {
 		}
 
 		// login or signup ajax call
-		var userAuth = function(){
+		var userAuth = function(obj, el){
+			var $pass = el.find('input[name=password]').val(),
+				$validUser = false;
+			// console.log(obj, el);
 
+			$.each(obj, function(index, value){
+				// console.log(value.password);
+				if(value.password == $pass){
+					$validUser = true;
+				}
+			});
+			return $validUser;
 		}
 
 		$doc.ready(function(){
@@ -89,7 +110,7 @@ try {
 
 				// call signup function
 				$doc.on('click', '.signup-login', function(e){					
-					signup(e, $(this));
+					signuplogin(e, $(this));
 				});
 
 		});

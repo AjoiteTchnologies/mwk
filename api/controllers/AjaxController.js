@@ -7,27 +7,16 @@
 
 module.exports = {
 	login : function(req, res) {
-		var abc = req.body,
-			email = '',
-			pass = '';
+		var email = req.body.email;
+		// sails.log(email);
 
-		_.each(abc, function(key, value){
-			if(value == 'email') {
-				email = key;
-			}
-			else {
-				pass = key
-			}
-		})
-		sails.log(email, pass);
-
-		User.find({password : 'Richa@123'})
+		User.find({email: email})
 		.exec(function(err, user){
 			if(err) {
 				res.send(500, 'Something went wrong!');
 			}
 			else {
-				sails.log(user);
+				// sails.log(user);
 				res.send(user);
 			}
 		});
@@ -37,14 +26,14 @@ module.exports = {
 		var abc = req.body;
 		// sails.log(abc);
 
-		User.create({abc})
+		User.create(abc)
 		.exec(function(err, user){
 			if(err) {
 				res.send(500, 'Something went wrong!');
 			}
 			else {
-				sails.log(user);
-				res.send(user);
+				// sails.log(user);
+				res.send('done');
 			}
 		});
 	},
