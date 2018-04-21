@@ -10,8 +10,11 @@ module.exports = {
 	index: function(req, res){
 		var responseObj = {
 			layout : 'layout',
-			list : []
+			list : [],
+			isLoggedIn : req.cookies.isLoggedin
 		};
+
+		sails.log(responseObj.isLoggedIn);
 		Catalog.find({})
 		.exec(function(err, list){
 			if(err){

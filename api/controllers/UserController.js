@@ -26,13 +26,13 @@ module.exports = {
 		res.view('user/create');
 	},
 
-	create: function(req, res){		
+	create: function(req, res){
 		var responseObj = {
 			name: req.body.name,
 			email: req.body.email
 		};
-		if(req.param('id') != '' && req.param('id') != null && req.param('id') != undefined){
 
+		if(req.param('id') != '' && req.param('id') != null && req.param('id') != undefined){
 			var id = req.param('id');
 			User.update({id:id}, responseObj)
 			.exec(function(err) {
@@ -50,14 +50,14 @@ module.exports = {
 				}
 				res.redirect('user/list');
 			});	
-		}
-			
+		}			
 	},
 
 	delete: function(req, res){
 		var responseObj = {
 			id: req.param('id')
 		};
+
 		User.destroy(responseObj)
 		.exec(function(err) {
 			if(err){

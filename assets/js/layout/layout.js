@@ -60,12 +60,15 @@ try {
 						console.log('Successfully Signed Up!');
 					}
 					else {
-						if(data == ''){
+						var $user = data.user;
+						if($user == ''){
 							console.log('Email id does not exist!');
+							$.cookie('isLoggedin', false);
 						}
 						else {							
 							var $validUser = userAuth(data, $form),
 								$validmsg = $validUser == true ? 'Successfully LoggedIn!' : 'Password does not match!';
+							$.cookie('isLoggedin', $validUser);
 							console.log($validmsg);
 						}
 					}
@@ -79,10 +82,11 @@ try {
 		// login or signup ajax call
 		var userAuth = function(obj, el){
 			var $pass = el.find('input[name=password]').val(),
-				$validUser = false;
-			// console.log(obj, el);
+				$validUser = false,
+				$obj = obj.user;
+			// console.log(obj.user);
 
-			$.each(obj, function(index, value){
+			$.each($obj, function(index, value){
 				// console.log(value.password);
 				if(value.password == $pass){
 					$validUser = true;

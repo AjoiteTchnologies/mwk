@@ -16,7 +16,7 @@ module.exports = {
 			ids.push(key.id);
 		});
 
-		sails.log(ids);
+		sails.log(req.session.id);
 		
 		// Catalog.find({id : { $in: ['5ab8a8535f4a145e09950d3f', '5ab8a62c1b6d3ec0287dae54', '5ab8a5e7284962201b679970']}}).exec(function(err, list){
 		Catalog.find({id : { $in: ids}}).exec(function(err, list){
@@ -29,5 +29,4 @@ module.exports = {
 			}
 		});
 	}
-
 };

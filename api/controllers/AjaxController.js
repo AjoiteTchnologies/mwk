@@ -7,7 +7,11 @@
 
 module.exports = {
 	login : function(req, res) {
-		var email = req.body.email;
+		var email = req.body.email,
+			responseObj = {
+				user : '',
+				isLoggedIn : false
+			}
 		// sails.log(email);
 
 		User.find({email: email})
@@ -17,8 +21,11 @@ module.exports = {
 			}
 			else {
 				// sails.log(user);
-				res.send(user);
+				responseObj.user = user;
+				responseObj.isLoggedIn = true;
+				res.send(responseObj);
 			}
+			sails.log(sails.session.user);
 		});
 	},
 
