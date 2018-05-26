@@ -1,0 +1,53 @@
+<% 
+	if(typeof catDetail == 'object' && catDetail && catDetail != ''){
+		if(catDetail.isActive == 'true'){
+			var cat = catDetail;
+			<!-- sails.log(cat); -->
+%>
+			<section class="product-catalog">
+<%
+				if(cat.productCount > 0){
+%>
+					<div class="cat-heading">
+						<h2><%- cat.name %></h2>
+						<span><%- cat.productCount %> Total Products</span>
+					</div>
+
+					<div class="product-list-box">
+<%
+						var productList = cat.productList;
+						for(var i=0; i< productList.length; i++){
+%>		
+							<div class="product-list">
+								<a href="/product/<%- productList[i].productId %>">
+									<span class="image-box"><img src="https://myweddingknot.com/media/catalog/product/cache/1/small_image/300x200/c96a280f94e22e3ee3823dd0a1a87606/i/m/img_5302.jpg"></span>
+									<h3><%- productList[i].name %></h3>
+									<span class="price-box">
+										<span class="actual-price">₹<%- productList[i].price["actual"] %></span>
+										<span class="discounted-price">₹<%- productList[i].price["discounted"] %></span>
+										<span class="per-item"> / card</span>
+									</span>
+								</a>
+							</div>
+<%
+					}
+%>
+					</div>
+<%
+				}
+				else {
+%>
+				No Products Found for <%- cat.name %>
+<%
+				}
+%>
+			</section>
+<%
+		}
+		else {
+%>
+	Category is not active.
+<%
+		}
+	}
+%>

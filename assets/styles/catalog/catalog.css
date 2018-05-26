@@ -1,0 +1,128 @@
+
+.cat-body {
+	display: flex;
+	flex-direction: row;
+}
+
+/* facet css starts here */
+.facet-listing {
+	flex: 1 1 20%;
+	height: 100%;
+	margin-right: 20px;
+	border: 1px solid #ccc;
+}
+
+	.facet-by {
+		border-bottom: 1px solid #ccc;
+		background: #eee;
+		padding: 10px;
+		cursor: pointer;
+	}
+
+	.facet-box {
+		border-bottom: 1px solid #ccc;
+	}
+
+	.facet-box:last-child {
+		border-bottom: none;
+	}
+
+		.facet-name {
+			padding: 10px;
+			cursor: pointer;
+			text-transform: capitalize;
+		}
+
+			.facet-list,
+			.facet-category {
+				padding: 0 10px 0 20px;
+			}
+
+				.facet-list a:before {
+					display: inline-block;
+					height: 20px;
+					width: 20px;
+					content: '';
+					margin-right: 10px;
+					background: url('../../images/radio-button-unchecked.jpg');
+				}
+
+				.facet-list a.checked:before {
+					background: url('../../images/radio_button_checked.png');
+				}
+
+				.facet-list a,
+				.facet-category a {
+					display: flex;
+					align-items: center;
+					color: #333;
+					margin-bottom: 10px;
+					text-transform: capitalize;
+				}
+/* facet css ends here  */
+
+/* product list css starts here */
+.product-catalog {
+	flex: 1 1 80%;
+}
+	
+	.cat-heading {
+		display: flex;
+    	align-content: space-between;
+    	margin-bottom: 20px;
+	}
+
+		.cat-heading h2 {
+			flex: 1;
+			font-size: 18px;
+		    color: #333;
+		    text-transform: uppercase;
+		    font-weight: normal;
+		}
+
+	.product-list-box {
+	}
+
+		.product-list {
+			text-align: center;
+			padding: 0 10px 20px 0;
+			display: inline-block;
+			width: 24%;
+		}
+
+		/*.product-list:nth-child(4n) {
+			padding-right: 0;
+		}*/
+
+			.product-list a {
+				display: block;
+				cursor: pointer;
+				color: #333;
+				border: 1px solid transparent;
+			}
+
+			.product-list a:hover {
+				border: 1px solid #eee;
+			}
+
+				.product-list a h3 {
+					margin: 5px 0;
+				}
+
+					img {
+						width: 100%;
+					}
+
+					.price-box {
+						font-size: 14px;
+					}
+
+						.actual-price {
+							color: #a7a7a7;
+							text-decoration: line-through;
+						}
+
+						.per-item {
+							font-size: 12px;
+						}
+/* product list css ends here */

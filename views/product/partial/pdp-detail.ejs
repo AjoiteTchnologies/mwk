@@ -1,0 +1,73 @@
+<%
+	if(typeof productInfo == 'object' && productInfo && productInfo != ''){
+		var products = productInfo.productData,
+			products1 = productInfo.productDetail,
+			productData,
+			productDetail;
+		products.forEach(function(product, index){
+			productData = product;
+		});
+		products1.forEach(function(product, index){
+			productDetail = product;
+			<!-- productDetail.sampleAvailable = 'no'; -->
+		});
+		sails.log(productDetail);
+%>
+		<div class="pdp-detail">
+			<h1 class="prd-name"><%- productData.name %></h1>
+
+			<p class="prd-short-desc"><%- productDetail.desc.short %></p>
+
+			<div class="pdp-price-box">
+				<span class="pdp-actual-price">₹<%- productData.price.actual %></span>
+				<span class="pdp-discounted-price">₹<%- productData.price.discounted %></span>
+				<span class="pdp-per-card">/ card</span>
+			</div>
+
+			<div class="qty-box">
+				<label>Quantity</label>
+				<input type="text" name="qty" value="<%- productData.moq %>" />
+			</div>
+
+			<div class="pdp-moq">Minimum Order Quantity: <%- productData.moq %></div>
+
+			<button type="submit" class="pdp-btn">BUY NOW</button>
+<%
+			if(productDetail.sampleAvailable == 'yes'){
+%>
+				<button type="submit" class="pdp-btn">Order Sample</button>
+<%
+			}
+%>
+
+			<p class="inq-text">For Any Enquiry Call us at 9811637373</p>
+
+			<div class="pdp-sp">
+				<div>
+					<span class="sp-icon ship-icon"></span>
+					<span class="sp-text">Free Shipping</span>
+					<span class="sp-desc">Free Shipping in India</span>
+				</div>
+				<div>
+					<span class="sp-icon print-icon"></span>
+					<span class="sp-text">Free Prining</span>
+					<span class="sp-desc">High Quality printing on cards</span>
+				</div>
+			</div>
+
+			<div class="pdp-social-icons">
+				<a href="javaScript:void(0)"></a>
+				<a href="javaScript:void(0)"></a>
+				<a href="javaScript:void(0)"></a>
+				<a href="javaScript:void(0)"></a>
+			</div>
+		</div>
+<%
+		
+	}
+	else {
+%>
+	No Product Found
+<%
+	}
+%>

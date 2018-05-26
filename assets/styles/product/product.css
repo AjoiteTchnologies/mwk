@@ -1,0 +1,178 @@
+.pdp-detail-box {
+	display: flex;
+}
+
+/* product image css starts here */
+	.product-image {
+		flex: 1 1 55%;
+		border: 1px solid #eee;
+	}
+/* product image css ends here */
+
+/* product detail css starts here */
+	.pdp-detail {
+		text-align: center;
+		flex: 1 1 45%;
+	}
+
+		.prd-name {
+		    font-size: 22px;
+		    font-weight: normal;
+		    letter-spacing: 1px;
+		    margin-bottom: 20px;
+		}
+
+		.prd-short-desc {
+			border-bottom: 1px solid #ebebeb;
+		    padding-bottom: 20px;
+		    margin: auto auto 25px;
+		    box-sizing: border-box;
+		    width: 72%;
+		    line-height: 20px;
+		}
+
+			.pdp-actual-price {
+			    color: #a7a7a7;
+			    font-size: 18px;
+			    font-weight: normal;
+			    text-decoration: line-through;
+			    padding-right: 10px;
+			}
+
+			.pdp-discounted-price {
+				font-size: 25px;
+			}
+
+		.qty-box {
+			margin: 15px 0 10px 
+		}
+
+			.qty-box label {
+			    text-transform: uppercase;
+    			font-size: 12px;
+			}
+
+			.qty-box input {
+				border: 1px solid #eee;
+			    width: 93px;
+			    height: 35px;
+			    padding: 0 10px;
+			    text-align: center;
+			    margin-left: 10px;
+			}
+
+		.pdp-moq {
+		    color: #888;
+    		font-size: 11px;
+		    margin-bottom: 20px;
+		}
+
+		.pdp-btn {
+		    height: 46px;
+		    width: 170px;
+		    min-width: 90px;
+		    vertical-align: middle;
+		    background: #fd4cb0;
+		    border: 0;
+		    font-size: 15px;
+		    color: #fff;
+		    /* text-transform: uppercase; */
+		    border-radius: 2px;
+		    margin-right: 10px;
+		}
+
+		.inq-text {
+		    padding: 10px 0 20px;
+		    border-bottom: 1px solid #eee;
+		    width: 75%;
+		    margin: 0 auto 20px auto;
+		}
+
+		.pdp-sp {
+			display: flex;
+   			align-items: center;
+		    margin: 0 15%;
+		}
+
+			.pdp-sp div {
+				flex: 1;
+			}
+
+				.pdp-sp span {
+					display: block;
+				}
+
+				.sp-icon {
+
+				} 
+
+				.ship-icon {
+
+				}
+
+				.print-icon {
+
+				}
+
+				.sp-text {
+				    font-size: 14px;
+				    text-transform: uppercase;
+				    margin: 10px 0;
+				}
+
+				.sp-desc {
+				    letter-spacing: 0.4px;
+				}
+
+/* product detail css ends here */
+
+/* infographic css starts here */
+.infographin-pdp {
+    text-align: center;
+    margin: 50px 0;
+}
+
+	.infographin-pdp > div {
+	    display: inline-block;
+	    width: 14%;
+	    text-align: center;
+	    margin-right: 20px;
+	}
+
+		.infographin-pdp > div span {
+		    display: block;
+		    margin: 10px auto 0;
+		}
+
+		.infographic-img {
+		    display: inline-block;
+		    height: 36px;
+		    width: 39px;
+		    background-image: url(https://myweddingknot.com/media/wysiwyg/porto/others/process-infographic-sprite.jpg);
+		}
+
+		.info-select-card {
+			background-position: -12px -6px;
+		}
+
+		.info-edit-card {
+			background-position: -91px -7px;
+		}
+
+		.info-design-card {
+			background-position: -158px -6px;
+		}
+
+		.info-approve-card {
+			background-position: -225px -6px;
+		}
+
+		.info-delivered-card {
+			width: 46px;
+			background-position: -291px -6px;
+		}
+
+		.infographic-txt {
+		    line-height: 20px;
+		}
+/* infographic css ends here */

@@ -1,0 +1,23 @@
+<div class="header p20">
+    <div class="logo-block fl">
+        <a href="/" class="ml10"><img src="/images/myweddingknot-logo.jpg"></a>
+    </div>
+    <div class="nav-block fl">
+<%
+    if(typeof headerCategory == 'object' && headerCategory && headerCategory != ''){    
+        headerCategory.forEach(function(category, index){
+%>
+                <a href="/catalog/<%- category.name %>/"><%- category.name %></a>
+<%
+        
+        });
+    }
+%>
+    </div>
+    <div class="cart-block fr pr10">
+        <a href=""><img src="/images/bag-icon.png"></a>
+        <!--<a href=""><img src="/images/user-icon.png"></a>
+        <a href=""><img src="/images/menu-icon2.png"></a>-->
+    </div>
+    <div class="clear"></div>
+</div>

@@ -8,9 +8,34 @@
 module.exports = {
 	index: function(req, res){
 		var responseObj = {
-			layout : 'layout'
+			layout : 'layout',			
+			pageType: 'catalogCategory',
+			headerCategory: {}
 		};
-		res.view(responseObj);
+
+		async.auto({
+
+			getHeader: function(callback) {
+                sails.services.commonservices.getHeaderCategory(function(err, category) {
+					if(err){
+						sails.log('error');
+					}	
+                    else {
+                        responseObj.headerCategory = category;
+                        callback(null, null);
+                    }
+                });
+            },
+
+		},function(err, asyncResults){
+			if(!err) {
+				// sails.log(responseObj);
+				return res.view(responseObj);
+			}
+			else {
+				sails.log('error');
+			}
+		});
 	}
 };
 

@@ -48,7 +48,7 @@ module.exports.routes = {
     action: 'list'
   },
 
-  '/catalog': {
+  '/catalog/:name': {
     controller: 'Catalog',
     action: 'index'
   },

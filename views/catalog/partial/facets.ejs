@@ -1,0 +1,61 @@
+<% 
+	if(typeof catDetail == 'object' && catDetail && catDetail != ''){
+		if(catDetail.isActive == 'true'){
+			var facets = catDetail.facets;
+			<!-- sails.log(catDetail.catTree); -->
+%>
+			<aside class="facet-listing">
+				<h2 class="facet-by">Filter By</h2>
+<%				
+				_.each(catDetail.catTree, function(category, key){
+					if(key.length > 1){
+						if(typeof category != 'string'){
+%>
+							<div class="facet-box">
+								<h3 class="facet-name"><%- catDetail.name %></h3>
+								<div class="facet-category">
+<%
+									for(var i = 0; i < category.length; i++){
+%>
+										<a href="/catalog/<%- category[i].name %>"><%- category[i].name %></a>
+<%
+									}
+%>
+								</div>
+							</div>
+<%				
+						}
+					}
+				});
+				facets.forEach(function(facet, index){
+					var facets = facet.values;
+					for(var facet in facets){
+						if(facets.hasOwnProperty(facet)){
+%>
+							<div class="facet-box">
+								<h3 class="facet-name"><%- facet %></h3>
+								<div class="facet-list">
+<%
+									for(var i=0; i < facets[facet].length; i++){
+%>
+										<a href="javaScript:void(0)"><%- facets[facet][i] %></a>
+<%
+									}
+%>
+								</div>
+							</div>
+<%
+						}
+					}
+				});
+%>
+			</aside>
+<%
+		}
+		else {
+%>
+			No Filters!!
+<%
+		}
+	}
+%>

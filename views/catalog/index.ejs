@@ -1,23 +1,19 @@
-Catalog Index Page
-<table>
-	<thead>
-		<tr>
-			<th>id</th>
-			<th>name</th>
-			<th>price</th>
-			<th>productid</th>
-			<th>Action</th>
-		</tr>
-	</thead>
-	<tbody>
-		<% list.forEach(function(list){ %>
-		<tr>
-			<td><%= list.id %></td>
-			<td><%= list.productname %></td>
-			<td><%= list.price %></td>
-			<td><%= list.productid %></td>
-			<td><a href="/product/<%=list.id %>">View</a></td>
-		</tr>
-		<% }) %>
-	</tbody>
-</table>
+<section class="container">
+	<!-- breadcrumbs starts here -->
+	<div class="breadcrumbs">
+
+	</div>
+	<!-- breadcrumbs ends here -->
+
+	<!-- filters and product list starts here -->
+	<section class="cat-body">
+		<!-- filters starts here -->
+		<%- partial('partial/facets.ejs')%>
+		<!-- filters ends here -->
+
+		<!-- product list starts here -->
+		<%- partial('partial/cat-product.ejs')%>
+		<!-- product list ends here -->
+	</section>
+	<!-- filters and product list starts here -->	
+</section>

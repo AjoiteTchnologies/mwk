@@ -1,4 +1,4 @@
-Product Page
+<!-- Product Page
 <% if(typeof list == 'object' && list){ %>
 	<form action="/cart/" method="POST" id="buy-now-form" >
 		<input type="hidden" class="product-id" name="productid" value="<%= list.id %>" /><br /><br />
@@ -10,4 +10,22 @@ Product Page
 		<input type="submit" value="Buy Now" class="cart-add">
 	</form>
 <% } %>
+ -->
+<section class="container">
 
+	<!-- image and product details starts here -->
+	<section class="pdp-detail-box">
+		<!-- image box starts here -->
+		<%- partial('partial/pdp-image.ejs')%>
+		<!-- image box ends here -->
+
+		<!-- detail box starts here -->
+		<%- partial('partial/pdp-detail.ejs')%>
+		<!-- detail box ends here -->
+	</section>
+	<!-- imge and product details ends here -->
+
+	<!-- info graphic starts here -->
+	<%- partial('partial/infographic.ejs')%>
+	<!-- info graphic ends here -->
+</section>
