@@ -64,3 +64,93 @@
 	left: 0;
 }
 /* login / signup css ends here */
+
+/* footer css starts here */
+
+/* footer top bar css starts here */
+.footer-top-bar {
+	text-align: center;
+	padding: 100px;
+	background-color: #e7e7e7;
+}
+	
+	.footer-top-bar h2 {
+		font-size: 40px;
+		line-height: 30px;
+	    font-weight: normal;
+	}
+
+	.footer-top-bar input[type="text"] {
+		border: 1px solid #d6d6d6;
+	    color: #6f6f6f;
+	    font-size: 18px;
+	    padding: 15px;
+	    margin: 40px 0;
+	    font-weight: normal;
+	    width: 550px;
+	}
+
+	.footer-top-bar input[type="submit"] {
+		
+	}
+/* footer top bar css ends here */
+
+/* footer bottom bar css starts here */
+.footer-bottom-bar {
+	color: #fff;
+	padding: 50px 0;
+	background-color: #2d2d2d;
+}
+
+	.footer-bottom-bar a {
+		color: #fff;
+	}
+
+	.f-info {
+		display: flex;
+		flex-direction: row;
+	}
+		
+		.contact-info {
+			flex: 1 1 40%;
+		}
+
+			.contact-info h3 {
+				font-weight: normal;
+			}
+
+			.contact-info div {
+
+			}
+
+			.f-number {
+				margin: 20px 0;
+			}
+
+		.cms-pages {
+			flex: 1 1 60%;
+		}
+
+				.f-pages-list a {
+					margin-right: 50px;
+					cursor: pointer;
+				}
+
+			.f-sicons {
+				margin: 20px 0;
+			}
+
+				.f-sicons a {
+					display: inline-block;
+					height: 20px;
+					width: 20px;
+					margin-right: 10px;
+					cursor: pointer;
+				}
+
+			.f-copyright {
+				font-size: 11px;
+			}
+/* footer bottom bar css ends here */
+
+/* footer css ends here */
