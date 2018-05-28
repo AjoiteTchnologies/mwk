@@ -106,7 +106,8 @@ module.exports = {
 			getCategoriesForProduct : function(callback){
 				callback(null, null);
 				// sails.log(responseObj.catDetail.catTree);
-				_.each(responseObj.catDetail.catTree, function(category, index){					
+				_.each(responseObj.catDetail.catTree, function(category, index){
+				sails.log(category.count);				
 					if(typeof category == 'string'){
 						responseObj.catDetail.totalCategories.push(category);
 					}

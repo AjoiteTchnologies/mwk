@@ -1,0 +1,85 @@
+.cms-links {
+	text-align: center;
+	padding: 50px;
+}
+
+	.view-cms {
+		height: 46px;
+	    width: 170px;
+	    display: inline-block;
+	    min-width: 90px;
+	    vertical-align: middle;
+	    background: #fd4cb0;
+	    border: 0;
+	    font-size: 15px;
+	    color: #fff;
+	    text-transform: uppercase; 
+	    border-radius: 2px;
+	    padding: 15px 0;
+	    margin: 10px 10px 0 0;
+	}
+
+/* cms add page css starts here */
+.message-box {
+	display: none;	
+    padding: 10px;
+    width: 80%;
+    margin: 0 auto;
+    text-transform: capitalize;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.success-message {
+    border: 1px solid #7eca61;
+    background-color: #dcf3d6;
+    color: #7eca61;
+}
+
+.failure-message {
+    border: 1px solid #ad6a4e;
+    background-color: #eec8c7;
+    color: #ad6a4e;
+}
+
+.form-group {
+	margin-bottom: 20px;
+}
+
+	.form-group > label {
+		width: 150px;
+		display: inline-block;
+		text-align: left
+	}
+
+	.form-group input[type="text"] {
+		border: 1px solid #d6d6d6;
+	    color: #6f6f6f;
+	    padding: 10px;
+	    width: 300px; 
+	}
+
+	.radio-group {
+		display: inline-block;
+		width: 300px;
+		text-align: left;
+	}
+
+		.radio-group label {
+			margin-right: 20px;
+		}
+/* cms add page css ends here */
+
+/* cms view page css starts here */
+.cms-table {
+	border-top: 1px solid #d6d6d6;
+	border-left: 1px solid #d6d6d6;
+}
+
+	.cms-table th,
+	.cms-table td {
+		padding: 10px 5px;
+		border-bottom: 1px solid #d6d6d6;
+		border-right: 1px solid #d6d6d6;
+	}
+/* cms view page css ends here */
