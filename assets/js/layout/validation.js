@@ -1,3 +1,10 @@
+/* 
+	- To apply validation call the "validate" function first in your submit function.
+	- Add "required" class in all inputs on which the validation would be applicable.
+	- Then add required validation classes such as "mobile, password" etc. as per your 
+	  requirement. 
+*/
+
 try {
 	(function($){
 		var $doc = $(document);
