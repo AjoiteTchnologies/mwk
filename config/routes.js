@@ -53,14 +53,19 @@ module.exports.routes = {
     action: 'index'
   },
 
-  '/cms/view': {
+  '/cms/list': {
     controller: 'Cms',
-    action: 'view'
+    action: 'list'
   },
 
   '/cms/add': {
     controller: 'Cms',
     action: 'add'
+  },
+
+  '/cms/page/:pageId': {
+    controller: 'Cms',
+    action: 'view'
   }
 
   /***************************************************************************

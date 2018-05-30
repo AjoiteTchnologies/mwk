@@ -44,6 +44,7 @@
 
 .form-group {
 	margin-bottom: 20px;
+	position: relative;
 }
 
 	.form-group > label {
@@ -52,11 +53,19 @@
 		text-align: left
 	}
 
-	.form-group input[type="text"] {
+	.form-group input[type="text"],
+	.form-group select {
 		border: 1px solid #d6d6d6;
 	    color: #6f6f6f;
 	    padding: 10px;
 	    width: 300px; 
+	}
+	.form-group textarea {
+		border: 1px solid #d6d6d6;
+	    color: #6f6f6f;
+	    padding: 10px;
+	    width: 300px;
+	    height: 100px;
 	}
 
 	.radio-group {
@@ -68,6 +77,24 @@
 		.radio-group label {
 			margin-right: 20px;
 		}
+
+	input[type="submit"] { 
+		margin-top: 10px;
+		text-transform: uppercase;
+	}
+
+	.error-msg {
+		position: absolute;
+	    color: red;
+	    font-size: 12px;
+	    top: 0;
+	    /* left: 0; */
+	    margin: 12px 0 0 10px;
+	}
+
+.block-page {
+	display: none;
+}
 /* cms add page css ends here */
 
 /* cms view page css starts here */

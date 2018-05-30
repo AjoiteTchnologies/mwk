@@ -9,7 +9,7 @@ module.exports = {
 	index: function(req, res){
 		var responseObj = {
 			layout : 'layout',			
-			pageType: 'catalogCategory',
+			pageType: 'index',
 			headerCategory: {}
 		};
 
@@ -26,6 +26,18 @@ module.exports = {
                     }
                 });
             },
+
+            getCmsBlocks: function(callback){
+            	sails.services.commonservices.getCmsData('homepage', function(err, cmsblocks) {
+					if(err){
+						sails.log('error');
+					}	
+                    else {
+                        responseObj.cmsBlocks = cmsblocks;
+                        callback(null, null);
+                    }
+                });
+            }
 
 		},function(err, asyncResults){
 			if(!err) {

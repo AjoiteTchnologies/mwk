@@ -1,3 +1,16 @@
 <div class="homepage-banner">
   <img src="/images/home-banner2.jpg" width="100%">
 </div>
+<%
+	if(typeof cmsBlocks == 'object' && cmsBlocks && cmsBlocks != '' && cmsBlocks != null ){
+		_.each(cmsBlocks, function(cmsblock, key){
+			if(cmsblock.idUrl == 'footer-subscription'){
+%>
+				<div class="featured-category">
+					<%- cmsblock.content %>
+				</div>	
+<%
+			}
+		});
+	}
+%>
