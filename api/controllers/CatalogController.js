@@ -15,6 +15,7 @@ module.exports = {
 			layout: 'layout',
 			pageType: 'catalogCategory',
 			headerCategory: {},
+			breadCrumb: [],
 			catDetail: {
 				name: catName,
 				catId: '',
@@ -107,7 +108,6 @@ module.exports = {
 				callback(null, null);
 				// sails.log(responseObj.catDetail.catTree);
 				_.each(responseObj.catDetail.catTree, function(category, index){
-				sails.log(category.count);				
 					if(typeof category == 'string'){
 						responseObj.catDetail.totalCategories.push(category);
 					}
@@ -122,7 +122,7 @@ module.exports = {
 
 			getProducts : function(callback){
 				// sails.log(responseObj.catDetail.totalCategories);
-				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}})
+				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}}).sort('price.discounted ASC')
 				.exec(function(err, products){
 					if(err){
 						sails.log('Could not get products!')
@@ -147,11 +147,36 @@ module.exports = {
 						callback(null, null);
 					}
 				});
+			},
+
+			getBreadCrumbs : function(callback){
+				// responseObj.catDetail.path = ['CAT102','CAT110'];
+				if(responseObj.catDetail.path == ''){
+					responseObj.breadCrumb.push(responseObj.catDetail.name);
+					callback(null, null);
+				}
+				else {
+					// sails.log(responseObj.catDetail.path);
+					Catmapping.find({catId : responseObj.catDetail.path})
+					.exec(function(err, response){
+						if(err){
+							sails.log('Could not get breadcrumb!');
+						}
+						else {
+							for(var i = 0; i < response.length; i++){
+								responseObj.breadCrumb.push(response[i].name);
+							}
+							responseObj.breadCrumb.push(responseObj.catDetail.name);
+							// sails.log(responseObj.breadCrumb);
+							callback(null, null);
+						}
+					});
+				}				
 			}
 
 		}, function(err, asyncResults) {
             if (!err) {
-            	// sails.log(responseObj);     
+            	sails.log(responseObj.breadCrumb);     
             	return res.view(responseObj);
             } 
             else{

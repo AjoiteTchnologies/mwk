@@ -28,3 +28,8 @@ exports.getCmsData = function(pageType, callback) {
 		}	
 	});
 };
+
+//get the breadcrumbs
+exports.getBreadCrumb = function(callback){
+	
+}

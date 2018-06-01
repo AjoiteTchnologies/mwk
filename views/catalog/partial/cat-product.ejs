@@ -9,8 +9,16 @@
 				if(cat.productCount > 0){
 %>
 					<div class="cat-heading">
-						<h2><%- cat.name %></h2>
-						<span><%- cat.productCount %> Total Products</span>
+						<h2><%- cat.name %> | <span><%- cat.productCount %> Total Products</span></h2>
+						<div class="cat-sorting">
+							<span>Sort By : </span>
+							<div class="sort-options">Popularity</div>
+							<div class="options-list">
+								<a href="javascript:void(0)" class="selected">Popularity</a>
+								<a href="javascript:void(0)">Price: High To Low</a>
+								<a href="javascript:void(0)">Price: Low To High</a>
+							</div>
+						</div>
 					</div>
 
 					<div class="product-list-box">

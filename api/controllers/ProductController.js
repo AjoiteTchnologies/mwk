@@ -78,7 +78,7 @@ module.exports = {
 
 		}, function(err, asyncResults) {
             if (!err) {
-            	// sails.log(responseObj);      
+            	sails.log(responseObj);      
             	return res.view(responseObj);
             } 
             else{
