@@ -1,0 +1,12 @@
+<div class="pages" data-total="<%- catDetail.totalProducts %>" data-size="<%- catDetail.pageSize %>">
+<%
+	var currentNo = 1;
+	var pageCount = Math.ceil((catDetail.totalProducts) / catDetail.pageSize);	
+		for(var i = 1; i <= pageCount; i++){
+			var currentPage = (i == currentNo) ? 'active' : '';
+%>
+		<span class="<%- currentPage %>" data-pageno="<%- i %>"><%- i %></span>
+<%
+	}
+%>
+</div>

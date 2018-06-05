@@ -175,3 +175,32 @@
 							font-size: 12px;
 						}
 /* product list css ends here */
+
+/* pagination css starts here */
+.pagination {
+	text-align: right;
+    padding: 10px;
+}
+	
+	.pages {
+		display: inline-block;
+	}
+
+		.pages span {
+			display: inline-block;
+		    color: #fff;
+		    border: 1px solid #eee;
+		    background-color: #ccc;
+		    height: 30px;
+		    width: 30px;
+		    font-size: 18px;
+		    text-align: center;
+		    align-items: start;
+		    padding-top: 6px;
+		    cursor: pointer;
+		}
+
+		.pages span.active { 
+			background-color: #fc2c7b;
+		}
+/* pagination css ends here */

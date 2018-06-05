@@ -20,6 +20,7 @@
 		    font-weight: normal;
 		    letter-spacing: 1px;
 		    margin-bottom: 20px;
+		    text-transform: capitalize;
 		}
 
 		.prd-short-desc {
@@ -176,3 +177,27 @@
 		    line-height: 20px;
 		}
 /* infographic css ends here */
+
+/* product attribute css starts here */
+.prd-attr-list {
+    border: 1px solid #eee;
+    border-bottom: 0;
+    margin-bottom: 30px;
+}
+
+	.prd-attr {
+	    border-bottom: 1px solid #eee;
+	}
+
+		.attr-name,
+		.attr-value {
+			display: inline-block;
+		    padding: 10px;
+		}
+
+		.attr-name {
+		    border-right: 1px solid #eee;		    
+		    width: 30%;
+		    text-transform: capitalize;: 
+		}
+/* product attribute css ends here */

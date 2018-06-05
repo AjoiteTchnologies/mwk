@@ -27,7 +27,9 @@ module.exports = {
 				productList: [],
 				productCount: '',
 				facetId: '',
-				facets: {}
+				facets: {},
+				totalProducts: '',
+				pageSize: 10
 			}
 		};
 
@@ -122,7 +124,7 @@ module.exports = {
 
 			getProducts : function(callback){
 				// sails.log(responseObj.catDetail.totalCategories);
-				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}}).sort('price.discounted ASC')
+				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}}).sort('price.discounted ASC').limit(responseObj.catDetail.pageSize)
 				.exec(function(err, products){
 					if(err){
 						sails.log('Could not get products!')
@@ -130,6 +132,21 @@ module.exports = {
 					else {
 						responseObj.catDetail.productList = products;
 						responseObj.catDetail.productCount = products.length;
+						// sails.log(products);
+						callback(null, null);
+					}
+				});
+			},
+
+			getProductCount : function(callback){
+				// sails.log(responseObj.catDetail.totalCategories);
+				Productmapping.count({catId : { $in : responseObj.catDetail.totalCategories}})
+				.exec(function(err, products){
+					if(err){
+						sails.log('Could not get products!')
+					}
+					else {
+						responseObj.catDetail.totalProducts = products;
 						// sails.log(products);
 						callback(null, null);
 					}
@@ -150,38 +167,28 @@ module.exports = {
 			},
 
 			getBreadCrumbs : function(callback){
-				// responseObj.catDetail.path = ['CAT102','CAT110'];
-				if(responseObj.catDetail.path == ''){
-					responseObj.breadCrumb.push(responseObj.catDetail.name);
-					callback(null, null);
-				}
-				else {
-					// sails.log(responseObj.catDetail.path);
-					Catmapping.find({catId : responseObj.catDetail.path})
-					.exec(function(err, response){
-						if(err){
-							sails.log('Could not get breadcrumb!');
-						}
-						else {
-							for(var i = 0; i < response.length; i++){
-								responseObj.breadCrumb.push(response[i].name);
-							}
-							responseObj.breadCrumb.push(responseObj.catDetail.name);
-							// sails.log(responseObj.breadCrumb);
-							callback(null, null);
-						}
-					});
-				}				
+
+				sails.services.commonservices.getBreadCrumb(catName, responseObj.catDetail.path, function(err, breadCrumb){
+					if(err){
+						sails.log('error');
+					}	
+                    else {
+                        responseObj.breadCrumb = breadCrumb;
+                        callback(null, null);
+                    }
+				});
+
 			}
 
 		}, function(err, asyncResults) {
             if (!err) {
-            	sails.log(responseObj.breadCrumb);     
+            	// sails.log(responseObj);     
             	return res.view(responseObj);
             } 
             else{
             	sails.log('Could not load page!');
             }
         });
-	}
+	},
+
 };

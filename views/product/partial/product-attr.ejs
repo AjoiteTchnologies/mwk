@@ -1,0 +1,28 @@
+<section class="prd-attr-list">
+<%
+	for (var attr in productInfo.productAttr){
+		if(productInfo.productAttr.hasOwnProperty(attr)){
+			<!-- sails.log(productInfo.productAttr[attr]); -->
+%>
+	<div class="prd-attr">
+		<span class="attr-name"><%- attr %></span>
+<%
+		if(typeof productInfo.productAttr[attr] == 'object'){
+			for(var i = 0; i < productInfo.productAttr[attr].length; i++){
+%>
+				<span class="attr-value"><%- productInfo.productAttr[attr][i] %></span>
+<%
+			}
+		} 
+		else{
+%>
+			<span class="attr-value"><%- productInfo.productAttr[attr] %></span>
+<%
+		}
+%>
+	</div>
+<%
+		}
+	}
+%>
+</section>

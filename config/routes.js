@@ -66,6 +66,11 @@ module.exports.routes = {
   '/cms/page/:pageId': {
     controller: 'Cms',
     action: 'view'
+  },
+
+  '/cart' : {
+    controller: 'cart',
+    action: 'index'
   }
 
   /***************************************************************************
