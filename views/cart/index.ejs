@@ -1,1 +1,99 @@
-Cart
+<%
+	if(typeof productData == 'object' && productData !== '' && productData !== undefined && productData !== null){	
+%>
+	<section class="container cart-page">
+		<h1>shopping Cart</h1>
+
+		<div class="cart-body">
+			<div class="cart-data">
+				<div class="cart-headings">
+					<span class="prd-name-img">Products</span>
+					<span class="prd-qty">Qty</span>
+					<span class="prd-total">Subtotal</span>
+				</div>
+<%
+				_.each(productData, function(key, value){
+%>
+				<div class="cart-products">
+					<span class="prd-name-img">
+						<span class="prd-img">
+							<img src="" / >
+						</span>
+						<span class="cart-prd-detail">
+							<span class="prd-name"><%- key.name %></span>
+							<span class="prd-price">₹ <%- key.price['discounted'] %></span>
+							<span>Delivery in : <%- key.avgDispatchTime['min'] %> - <%- key.avgDispatchTime['max'] %> Days</span>
+							<a href="javascript:void(0)" class="cart-remove">Remove</a>
+						</span>
+					</span>
+					<span class="prd-qty">
+						<input type="text" class="cart-qty number-only" data-sample="<%- key.sampleAvailable %>" name="qty" data-stock="<%- key.stock %>" data-moq="<%- key.moq %>" value="1" disabled>
+						<span class="cart-qchange">Edit</span>
+						<label class="error-msg"></label>
+					</span>
+					<span class="prd-total">₹ 48.00</span>
+				</div>
+<%
+				});
+%>
+				<!-- <div class="cart-products">
+					<span class="prd-name-img">
+						<span class="prd-img">
+							<img src="" / >
+						</span>
+						<span class="cart-prd-detail">
+							<span class="prd-name">Product Name</span>
+							<span>₹ 48.00</span>
+							<span>Delivered By : 5 - 6 Days</span>
+							<a href="javascript:void(0)" class="cart-remove">Remove</a>
+						</span>
+					</span>
+					<span class="prd-qty">
+						<input type="text" class="mobile" name="" value="1" disabled>
+						<span class="cart-qchange">Edit</span>
+					</span>
+					<span class="prd-total">₹ 48.00</span>
+				</div> -->
+
+				<div class="cart-actions">
+					<a href="javascript:void(0)" class="cart-btn">Continue Shopping</a>
+					<a href="javascript:void(0)" class="cart-btn">Clear Shopping Cart</a>
+				</div>
+
+			</div>
+
+			<aside class="cart-detail">
+				<h2>Cart Totals</h2>
+
+				<div class="cart-breakup">
+					<div class="Subtotal">
+						<span>Subtotal</span>
+						<span>₹ 48.00</span>
+					</div>
+
+					<div class="cart-no">
+						<span>GST(Tax)</span>
+						<span>₹ 5.76</span>
+					</div>
+
+					<div class="cart-no">
+						<span>Grand Total</span>
+						<span class="grand-total">₹ 53.76</span>
+					</div>
+
+					<a href="javascript:void(0)" class="checkout-btn">Proceed to Checkout</a>
+					
+				</div>
+
+			</aside>
+		</div>
+
+	</section>
+<%
+	}
+	else{
+%>
+	Your Cart is Empty!!
+<%
+	}
+%>

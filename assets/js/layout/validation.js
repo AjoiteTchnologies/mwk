@@ -10,7 +10,7 @@ try {
 		var $doc = $(document);
 
 		// only numbers
-		$doc.on('input', '.mobile', function(){
+		$doc.on('input', '.number-only', function(){
 			$(this).val($(this).val().replace(/[^0-9]/g, ''));
 		})
 

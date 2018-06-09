@@ -105,6 +105,7 @@ module.exports = {
 						sails.log('Could not get attributes!')
 					}
 					else {
+						// sails.log(prdAttr);
 						responseObj.productInfo.productAttr = prdAttr[0].attr;
 						callback(null, null);
 					}
@@ -113,7 +114,7 @@ module.exports = {
 
 		}, function(err, asyncResults) {
             if (!err) {
-            	// sails.log(responseObj);      
+            	// sails.log(responseObj.productInfo.productId);      
             	return res.view(responseObj);
             } 
             else{

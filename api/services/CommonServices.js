@@ -1,3 +1,13 @@
+// merge two objects
+exports.merge = function(target) {
+    var sources = [].slice.call(arguments, 1);
+    sources.forEach(function(source) {
+        for (var prop in source) {
+            target[prop] = source[prop];
+        }
+    });
+    return target;
+};
 
 // get all parent categories for header
 exports.getHeaderCategory = function(callback) {
