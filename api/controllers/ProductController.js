@@ -28,14 +28,16 @@ module.exports = {
 			layout: 'layout',
 			pageType: 'product',
 			headerCategory: {},
+			breadCrumb: [],
 			productInfo: {
 				productId: prdId,
 				productData: {},
-				productDetail: {}
+				productDetail: {},
+				productAttr: {}
 			}
 		}
 
-		async.auto({
+		async.series({
 			
 			getProductData : function(callback){
 				Productmapping.find({productId: prdId})
@@ -73,12 +75,46 @@ module.exports = {
                         callback(null, null);
                     }
                 });
-
             },
+
+            getBreadCrumbs : function(callback){
+            	Catmapping.find({catId : responseObj.productInfo.productData[0].catId})
+            	.exec(function(err, category){
+            		if(err){
+            			sails.log('Could not fetch category!');
+            		}
+            		else{
+						sails.services.commonservices.getBreadCrumb(category[0].name, category[0].path, function(err, breadCrumb){
+							if(err){
+								sails.log('error');
+							}	
+		                    else {
+		                    	breadCrumb.push(responseObj.productInfo.productData[0].name);
+		                        responseObj.breadCrumb = breadCrumb;
+		                        callback(null, null);
+		                    }
+						});
+            		}
+            	});
+			},
+
+			getProductAttr : function(callback){
+				Productattr.find({productId : prdId})
+				.exec(function(err, prdAttr) {
+					if(err){
+						sails.log('Could not get attributes!')
+					}
+					else {
+						// sails.log(prdAttr);
+						responseObj.productInfo.productAttr = prdAttr[0].attr;
+						callback(null, null);
+					}
+				})
+			}
 
 		}, function(err, asyncResults) {
             if (!err) {
-            	// sails.log(responseObj);      
+            	// sails.log(responseObj.productInfo.productId);      
             	return res.view(responseObj);
             } 
             else{

@@ -1,0 +1,19 @@
+
+<div class="breadcrumb">
+	<a href="/">Home</a>
+<%
+	<!-- sails.log(breadCrumb); -->
+	for(var i = 0; i < breadCrumb.length; i++){
+		if(i !== (breadCrumb.length - 1)){
+%>
+			/ <a href="/catalog/<%- breadCrumb[i] %>" class="active"><%- breadCrumb[i] %></a>
+<%
+		}
+		else{
+%>
+			/ <a href="javascript:void(0) %>" class="active"><%- breadCrumb[i] %></a>
+<%
+		}
+	}
+%>
+</div>

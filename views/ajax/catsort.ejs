@@ -1,0 +1,8 @@
+<% 
+	if(typeof catDetail == 'object' && catDetail !== '' ){
+	sails.log(catDetail);
+%>
+	<%- partial('../catalog/partial/cat-products.ejs') %>
+<%
+	}
+%>

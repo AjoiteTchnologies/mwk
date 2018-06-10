@@ -6,27 +6,72 @@
  */
 
 module.exports = {
-	index: function(req, res){
-		var query = JSON.parse(req.body.localdata), // still have to figure out where the id's are coming from like body or param
-			ids = [];
-		// sails.log(typeof(JSON.parse(query)));
+	index : function(req, res){
+		if(req.body !== '' && req.body !== undefined && req.body !== null){
+			var pid = req.body.pid,
+				qty = req.body.qty,
+				productData = {},
+				productDetail = {};
 
-		_.each(query, function(key, value){
-			// sails.log(key.id, key.qty);
-			ids.push(key.id);
-		});
+			var responseObj = {
+				layout : 'layout',
+				pageType : 'cart',
+				qty : qty,
+				productData : {}
+			}
 
-		sails.log(req.session.id);
-		
-		// Catalog.find({id : { $in: ['5ab8a8535f4a145e09950d3f', '5ab8a62c1b6d3ec0287dae54', '5ab8a5e7284962201b679970']}}).exec(function(err, list){
-		Catalog.find({id : { $in: ids}}).exec(function(err, list){
-			// sails.log(query,list);
-			if(err){
-				res.send(500, 'Something went wrong!');
-			}
-			else{
-				res.view('cart/index', {list : list});
-			}
-		});
+			async.auto({
+
+				getProductData : function(callback){
+					Productmapping.find({productId : ['PRD10003', 'PRD10004']}) //['PRD10003', 'PRD10004']
+					.exec(function(err, response){
+						if(err){
+							sails.log('Could not find products!');
+						}
+						else {
+							productData = response;
+							callback(null, null);
+						}
+					});
+				},
+
+				getProductDetail : function(callback){
+					Productdetail.find({productId : ['PRD10003', 'PRD10004']})
+					.exec(function(err, response){
+						if(err){
+							sails.log('Could not find products!');
+						}
+						else {
+							productDetail = response;
+							callback(null, null);
+						}
+					});
+				}
+
+			}, function(err, asyncResults){
+				if(!err){
+
+					for(var i = 0; i < productData.length; i++){
+						
+						for(var i = 0; i < productDetail.length; i++){
+							if(productData[i].productId == productDetail[i].productId){
+								var result = sails.services.commonservices.merge(productData[i], productDetail[i]);
+								responseObj.productData[productData[i].productId] = result;
+							}
+						}
+					}					
+
+					// sails.log(responseObj);
+					return res.view(responseObj);
+				}
+				else {
+					sails.log('Could not load page!');
+				}
+			});
+		}
+		else{
+			return res.view(responseObj);
+		}
 	}
 };
+

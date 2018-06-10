@@ -154,3 +154,21 @@
 /* footer bottom bar css ends here */
 
 /* footer css ends here */
+
+/* breadcrumbs css satrts here */
+.breadcrumb {
+	margin-bottom: 20px;
+	font-style: italic;
+}
+
+	.breadcrumb a {
+		color: #333;
+		text-transform: capitalize;
+	}
+
+	.breadcrumb a:last-child {
+		cursor: default;
+		font-style: normal;
+		color: #333;
+	}
+/* breadcrumbs css ends here */

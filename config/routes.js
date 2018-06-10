@@ -37,25 +37,10 @@ module.exports.routes = {
     controller: 'Index',
     action: 'index'
   },
-  
-  '/user/add/': {
-    controller: 'User',
-    action: 'add'
-  },
-
-  '/user/list/': {
-    controller: 'User',
-    action: 'list'
-  },
 
   '/catalog/:name': {
     controller: 'Catalog',
     action: 'index'
-  },
-
-  '/catalog/add': {
-    controller: 'Catalog',
-    action: 'add'
   },
 
   '/product/:id': {
@@ -63,18 +48,28 @@ module.exports.routes = {
     action: 'index'
   },
 
-  '/cart/' : {
-    controller: 'Cart',
+  '/cms/': {
+    controller: 'Cms',
     action: 'index'
   },
 
-  '/header' : {
-    controller: 'Ajax',
-    action: 'header'
+  '/cms/list': {
+    controller: 'Cms',
+    action: 'list'
   },
 
-  '/cms/': {
+  '/cms/add': {
     controller: 'Cms',
+    action: 'add'
+  },
+
+  '/cms/page/:pageId': {
+    controller: 'Cms',
+    action: 'view'
+  },
+
+  '/cart' : {
+    controller: 'cart',
     action: 'index'
   }
 

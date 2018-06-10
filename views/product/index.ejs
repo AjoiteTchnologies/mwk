@@ -12,7 +12,10 @@
 <% } %>
  -->
 <section class="container">
-
+	<!-- breadcrumbs starts here -->
+	<%- partial('../shared/widgets/breadCrumb.ejs', {breadCrumb}) %>
+	<!-- breadcrumbs ends here -->
+	
 	<!-- image and product details starts here -->
 	<section class="pdp-detail-box">
 		<!-- image box starts here -->
@@ -28,4 +31,8 @@
 	<!-- info graphic starts here -->
 	<%- partial('partial/infographic.ejs')%>
 	<!-- info graphic ends here -->
+
+	<!-- product attribute starts here -->
+	<%- partial('partial/product-attr.ejs')%>
+	<!-- product attribute ends here -->
 </section>
