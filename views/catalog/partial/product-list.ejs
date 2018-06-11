@@ -1,0 +1,43 @@
+<% 
+	if(typeof catDetail == 'object' && catDetail && catDetail != ''){
+		if(catDetail.isActive == 'true'){
+			var cat = catDetail;
+			<!-- sails.log(cat); -->
+%>
+			<section class="product-catalog" data-ids="<%- catDetail.totalCategories%>">
+<%
+				if(cat.productCount > 0){
+%>
+					<div class="cat-heading">
+						<h2 data-name="<%- cat.name %>"><%- cat.name %> | <span><%- cat.productCount %> Total Products</span></h2>
+						<div class="cat-sorting">
+							<span>Sort By : </span>
+							<div class="sort-options" data-query="popularity|desc">Popularity</div>
+							<div class="options-list">
+								<a href="javascript:void(0)" data-query="popularity|desc" class="selected">Popularity</a>
+								<a href="javascript:void(0)" data-query="price|desc">Price: High To Low</a>
+								<a href="javascript:void(0)" data-query="price|asc">Price: Low To High</a>
+							</div>
+						</div>
+					</div>					
+					
+					<%- partial('cat-products.ejs')%>
+					
+<%
+				}
+				else {
+%>
+				No Products Found for <%- cat.name %>
+<%
+				}
+%>
+			</section>
+<%
+		}
+		else {
+%>
+	Category is not active.
+<%
+		}
+	}
+%>

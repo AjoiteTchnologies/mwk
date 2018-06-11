@@ -1,5 +1,6 @@
 try {
 	(function($){
+		var $doc = $(document);
 
 		// store product info in local storage if user is not logged in
 		var cartLocalStorage = function (e, el) {
@@ -62,17 +63,62 @@ try {
 				// console.log($idObj);
 			}
 		};
-		
-		$(document).ready(function(){
+
+		// update cart total
+		var cartTotal = function(){
+			var $grandTotal = 0;
+			$('.cart-products').each(function(){
+				var $this = $(this),
+					$prdPrice = $this.find($('.prd-price')).text(),
+					$prdPrice = parseInt($prdPrice.replace('₹', '')),
+					$prdQty = parseInt($this.find($('.cart-qty')).val()),
+					$total = $prdPrice * $prdQty;
+
+				$grandTotal = $grandTotal + $total;
+				$this.find($('.prd-total')).text('₹ ' + $total);
+			});
+			$('.grand-total').text('₹ ' + $grandTotal);
+		}
+
+		// edit quantity function
+		var qtyEdit = function(el){
+			var $action = el.text(),
+				$qtyBox = el.siblings($('input'));
+
+			if($action == 'Edit'){
+				$qtyBox.removeAttr('disabled');
+				el.text('Save');
+			}
+			else if($action == 'Save'){
+				var $qty = parseInt($qtyBox.val()),
+					$moq = parseInt($qtyBox.attr('data-moq')),
+					$stock = parseInt($qtyBox.attr('data-stock')),
+					$sample = $qtyBox.attr('data-sample').toLowerCase();
+
+				var $valid = validQty($qty, $moq, $stock, $sample);
+				if($valid == true){
+					$qtyBox.attr('disabled', 'disabled');
+					$qtyBox.attr('value', $qtyBox.val());
+					el.text('Edit');
+					cartTotal();
+				}
+			}
+		}
+
+		$doc.ready(function(){
 			// Binding the functions with elements
-			$(document).on('click', '.cart-add', function(e){
+			$doc.on('click', '.cart-add', function(e){
 				var $this = $(this);
 				cartLocalStorage(e, $this);
 				$this.closest('form').submit();
 			});
 
+			$doc.on('click', '.cart-qchange', function(){
+				qtyEdit($(this));
+			})
+
 			//functions to call on page load will come here 
-			
+			cartTotal();
 		});
 
 		window.cartLocalStorage = cartLocalStorage;

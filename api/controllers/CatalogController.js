@@ -15,6 +15,7 @@ module.exports = {
 			layout: 'layout',
 			pageType: 'catalogCategory',
 			headerCategory: {},
+			breadCrumb: [],
 			catDetail: {
 				name: catName,
 				catId: '',
@@ -26,7 +27,9 @@ module.exports = {
 				productList: [],
 				productCount: '',
 				facetId: '',
-				facets: {}
+				facets: {},
+				totalProducts: '',
+				pageSize: 10
 			}
 		};
 
@@ -107,7 +110,6 @@ module.exports = {
 				callback(null, null);
 				// sails.log(responseObj.catDetail.catTree);
 				_.each(responseObj.catDetail.catTree, function(category, index){
-				sails.log(category.count);				
 					if(typeof category == 'string'){
 						responseObj.catDetail.totalCategories.push(category);
 					}
@@ -122,7 +124,7 @@ module.exports = {
 
 			getProducts : function(callback){
 				// sails.log(responseObj.catDetail.totalCategories);
-				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}})
+				Productmapping.find({catId : { $in : responseObj.catDetail.totalCategories}}).sort('price.discounted ASC').limit(responseObj.catDetail.pageSize)
 				.exec(function(err, products){
 					if(err){
 						sails.log('Could not get products!')
@@ -130,6 +132,21 @@ module.exports = {
 					else {
 						responseObj.catDetail.productList = products;
 						responseObj.catDetail.productCount = products.length;
+						// sails.log(products);
+						callback(null, null);
+					}
+				});
+			},
+
+			getProductCount : function(callback){
+				// sails.log(responseObj.catDetail.totalCategories);
+				Productmapping.count({catId : { $in : responseObj.catDetail.totalCategories}})
+				.exec(function(err, products){
+					if(err){
+						sails.log('Could not get products!')
+					}
+					else {
+						responseObj.catDetail.totalProducts = products;
 						// sails.log(products);
 						callback(null, null);
 					}
@@ -147,6 +164,20 @@ module.exports = {
 						callback(null, null);
 					}
 				});
+			},
+
+			getBreadCrumbs : function(callback){
+
+				sails.services.commonservices.getBreadCrumb(catName, responseObj.catDetail.path, function(err, breadCrumb){
+					if(err){
+						sails.log('error');
+					}	
+                    else {
+                        responseObj.breadCrumb = breadCrumb;
+                        callback(null, null);
+                    }
+				});
+
 			}
 
 		}, function(err, asyncResults) {
@@ -158,5 +189,6 @@ module.exports = {
             	sails.log('Could not load page!');
             }
         });
-	}
+	},
+
 };

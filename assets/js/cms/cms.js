@@ -2,19 +2,53 @@ try{
 	(function($){
 		var $doc = $(document);
 
-		var createCms =  function(e, el){
-			e.preventDefault();
+		var pageTypeShowHide = function(el){
+			var val = el.val();
+
+			if(val == 'block'){
+				$('.block-page').slideDown();
+				$('.block-page select').addClass('required');
+			}
+			else{
+				$('.block-page').slideUp();
+				$('.block-page select').removeClass('required');
+			}
+		}
+
+		var createCms =  function(el){
 			var $form    = el.closest('form'),			
 				$ajaxUrl = $form.attr('action'),
+				$pageType = $form.find($('input[type="radio"]:checked')).val(),
+				$idUrl = $form.find($('input[name="identifier"]')).val();
+
+			if($pageType == 'page'){
+				if($idUrl.indexOf('/cms/page/') !== -1){
+					$idUrl = $idUrl;
+				}
+				else{
+					$idUrl = '/cms/page/' + $idUrl;
+				}				
 				$formData = {
-					'type' : $form.find($('input[type="radio"]:checked')).val(),
+					'type' : $pageType,
 					'name' : $form.find($('input[name="name"]')).val(),
-					'idUrl' : $form.find($('input[name="identifier"]')).val(),
-					'content' : $form.find($('input[name="content"]')).val(),
+					'idUrl' : $idUrl,
+					'content' : $form.find($('textarea')).val(),
 					'status' : 'inactive' 
 				};
-			console.log($formData);
+			}
+			else {
+				$idUrl = $idUrl;
+				$formData = {
+					'type' : $pageType,
+					'name' : $form.find($('input[name="name"]')).val(),
+					'page' : $form.find($('select')).val(),
+					'idUrl' : $idUrl,
+					'content' : $form.find($('textarea')).val(),
+					'status' : 'inactive' 
+				};
+			}
 
+			// console.log('added');
 			$.ajax({
 				url: $ajaxUrl,
 				type: 'POST',
@@ -29,13 +63,10 @@ try{
 		};
 
 		var deleteCms =  function(el){
-			var $formData = {
-				'idUrl' : el.attr('data-id'),
-			};
-			// console.log($formData);
+			var idUrl = el.attr('data-id');
 
 			$.ajax({
-				url: '/cms/delete/' + el.attr('data-id'),
+				url: '/cms/delete/' + idUrl,
 				type: 'POST',
 				success: function(data){
 					console.log();
@@ -50,12 +81,27 @@ try{
 		$doc.ready(function(){
 			
 			// bind functions with events
-			$('.create-cms').click(function(e){
-				createCms(e, $(this));
+
+			//create cms function
+			$('.create-cms').click(function(e){				
+				e.preventDefault();
+				var $this = $(this);
+				var valid = validate($this);
+				if(valid == true){
+					createCms($this);
+				}
 			});
 			
+
+			//delete cms function
 			$('.delete-cms').click(function(){
 				deleteCms($(this));
+			});
+
+
+			// show hide page type function
+			$('.cms-pagetype').click(function(){
+				pageTypeShowHide($(this));
 			})
 		});
 
