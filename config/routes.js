@@ -22,17 +22,7 @@
 
 module.exports.routes = {
 
-  /***************************************************************************
-  *                                                                          *
-  * Make the view located at `views/homepage.ejs` (or `views/homepage.jade`, *
-  * etc. depending on your default view engine) your home page.              *
-  *                                                                          *
-  * (Alternatively, remove this and add an `index.html` file in your         *
-  * `assets` directory)                                                      *
-  *                                                                          *
-  ***************************************************************************/
-
-
+  
   '/': {
     controller: 'Index',
     action: 'index'
@@ -72,6 +62,32 @@ module.exports.routes = {
     controller: 'cart',
     action: 'index'
   }
+  
+ '/user': {
+    controller: 'User',
+    action: 'index'
+  },
+
+  '/user/list': {
+    controller: 'User',
+    action:'list'
+  },
+
+  // '/user/signup': {
+  //   controller: 'User',
+  //   view: 'user/signup'
+  // },
+
+ '/user/create': {
+    controller: 'User',
+    action: 'createuser'
+  },
+
+  
+
+  
+
+>>>>>>> sample-crud-indu
 
   /***************************************************************************
   *                                                                          *
@@ -84,3 +100,6 @@ module.exports.routes = {
   ***************************************************************************/
 
 };
+
+  
+  
