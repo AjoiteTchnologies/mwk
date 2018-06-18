@@ -1,0 +1,24 @@
+<div class="product-list-box">
+<%
+	var productList = catDetail.productList;
+	for(var i=0; i< productList.length; i++){
+%>		
+		<div class="product-list">
+			<a href="/product/<%- productList[i].productId %>">
+				<span class="image-box"><img src="https://myweddingknot.com/media/catalog/product/cache/1/small_image/300x200/c96a280f94e22e3ee3823dd0a1a87606/i/m/img_5302.jpg"></span>
+				<h3><%- productList[i].name %></h3>
+				<span class="price-box">
+					<span class="actual-price">₹<%- productList[i].price["actual"] %></span>
+					<span class="discounted-price">₹<%- productList[i].price["discounted"] %></span>
+					<span class="per-item"> / card</span>
+				</span>
+			</a>
+		</div>
+<%
+	}
+%>
+
+<div class="pagination">
+	<%- partial('pagination.ejs') %>
+</div>
+</div>

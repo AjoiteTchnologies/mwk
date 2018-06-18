@@ -36,6 +36,8 @@
 			.facet-list,
 			.facet-category {
 				padding: 0 10px 0 20px;
+			    max-height: 150px;
+    			overflow-y: auto;
 			}
 
 				.facet-list a:before {
@@ -70,6 +72,7 @@
 		display: flex;
     	align-content: space-between;
     	margin-bottom: 20px;
+    	align-items: center;
 	}
 
 		.cat-heading h2 {
@@ -79,6 +82,52 @@
 		    text-transform: uppercase;
 		    font-weight: normal;
 		}
+
+			.cat-heading h2 span {
+				font-size: 12px;
+			}
+
+		.cat-sorting {
+			border: 1px solid #ccc;
+		    padding: 26px 10px 5px 10px;
+		    position: relative;
+		    width: 250px;
+		    font-size: 14px;
+		    cursor: pointer;
+		}
+
+			.cat-sorting span {
+				position: absolute;
+			    font-size: 12px;
+			    top: 5px;
+			    color: #B2B2B2;
+			}
+
+			.sort-options {
+
+			}
+
+			.options-list {
+				display: none;
+				position: absolute;
+			    border: 1px solid #ccc;
+			    width: 100%;
+			    left: 0;
+			    top: 50px;
+			    background: #fff;
+			}
+
+				.options-list a {
+					display: block;
+				    margin-bottom: 10px;
+				    color: #333;
+				    padding: 3px 10px;
+				}
+
+				.options-list a.selected,
+				.options-list a:hover {
+					background-color: #eee; 
+				}
 
 	.product-list-box {
 	}
@@ -126,3 +175,32 @@
 							font-size: 12px;
 						}
 /* product list css ends here */
+
+/* pagination css starts here */
+.pagination {
+	text-align: right;
+    padding: 10px;
+}
+	
+	.pages {
+		display: inline-block;
+	}
+
+		.pages span {
+			display: inline-block;
+		    color: #fff;
+		    border: 1px solid #eee;
+		    background-color: #ccc;
+		    height: 30px;
+		    width: 30px;
+		    font-size: 18px;
+		    text-align: center;
+		    align-items: start;
+		    padding-top: 6px;
+		    cursor: pointer;
+		}
+
+		.pages span.active { 
+			background-color: #fc2c7b;
+		}
+/* pagination css ends here */

@@ -1,44 +1,7 @@
 <%
-	if(typeof response == 'object' && response && response != '' ){
+	if(typeof response == 'object' && response && response != ''){
 %>
-<div class="message-box success-message"></div>
-<div class="message-box failure-message"></div>
-<div class="cms-links">
-	<table border="1px solid #d6d6d6" width="100%" class="cms-table">
-		<thead>
-			<tr>
-				<th>Type</th>
-				<th>Name</th>
-				<th>URL / Identifier</th>
-				<th>Content</th>
-				<th>Status</th>
-				<th>Actions</th>
-			</tr>
-		</thead>
-
-		<tbody>
-<%
-			_.each(response, function(cms, key){
-%>
-			<tr>
-				<td><%- cms.type %></td>
-				<td><%- cms.name %></td>
-				<td><%- cms.idUrl %></td>
-				<td><%- cms.content %></td>
-				<td>Inactive</td>
-				<td>
-					<a href="/cms/add/<%- cms.idUrl %>">Edit</a>
-					<a href="javascript:void(0)" data-id="<%- cms.idUrl %>" class="delete-cms">Delete</a>
-					<a href="javascript:void(0);">Activate</a>
-				</td>
-			</tr>
-<%
-			});
-%>
-		</tbody>
-	</table>
-	<a href="/cms/add" class="view-cms">Add New</a>
-</div>
+	<%- response.content %>
 <%
 	}
 %>
