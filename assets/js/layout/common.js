@@ -2,6 +2,8 @@ try{
 
 	(function($){
 
+		var $doc = $(document);
+
 		// quantity validation function
 		var validQty = function($qty, $moq, $stock, $sample){
 			var $error = $('.error-msg');
@@ -47,7 +49,47 @@ try{
 			}
 		}
 
+		// open popup function
+		var popup = function(el){
+			var $popupId = el.attr('data-id'),
+				$popupData = $('#' + $popupId);
+
+			$('body').append('<div class="overlay"></div>');
+			$('.popup-open').append($popupData);
+			$popupData.show();
+
+			var $popupHeight = ($popupData.height() + 60 ) / 2,
+				$popupWidth	= ($popupData.width() + 60) / 2;
+
+			$popupData.css('margin', '-' + $popupHeight + 'px 0 0 -' + $popupWidth +'px');
+
+			$('body').css('overflow', 'hidden');
+			
+		}
+
+		// popup close function
+		var popupClose = function(target){
+			target.hide();
+			$('.overlay, .popup-open').remove();
+			$('body').css('overflow', 'auto');
+		}
+
+		// bind functions with events
+
+			//popup open function
+			$doc.on('click', '.popup', function(){
+				popup($(this));
+			})
+
+			// close popup function
+			$doc.on('click', '.overlay', function(){
+				popupClose($('.popup-data'));
+			});
+
+
 		window.validQty = validQty;
+		window.popup = popup;
+		window.popupClose = popupClose;
 
 	}(jQuery));
 

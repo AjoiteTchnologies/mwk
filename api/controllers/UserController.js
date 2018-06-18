@@ -6,22 +6,16 @@
  */
 
 module.exports = {
-  
-index: function(req, res){
-	res.view();
-	sails.log('user');
-	},
 
-list: function(req, res){
-	sails.log('user');
-	User.find().exec(function(err, user){
-		if(err){
-			res.send(500, {error: 'Database error'});
-		}
-		res.view('user/list', {user:user});
-	});
-
-}, 
+    list: function(req, res){
+    	sails.log('user');
+    	User.find().exec(function(err, user){
+    		if(err){
+    			res.send(500, {error: 'Database error'});
+    		}
+    		res.view('user/list', {user:user});
+    	});
+    }, 
 
 // var BCrypt = require ('bcrypt')
 
@@ -46,19 +40,21 @@ list: function(req, res){
  //    res.view('user/login');
  // },
 
-createuser: function (req, res) {
-        var username = req.param("username");
-        var password = req.param("password");
-        var email = req.param("email");
-        var mobile = req.param("mobile");
-
-        User.create({username:username, password:password, email:email, mobile:mobile}).exec(function(err){
+     
+    create: function (req, res) {
+        var data = req.body;
+        // sails.log(data);
+        User.findOrCreate({email : req.body.email}, {data})
+        .exec(function(err, user){
         	if(err){
         		res.send(500, {error: 'Database error'});
         	}
-
-        	res.redirect('user/list');
-        	
+        	else if(user){
+                res.send('User with this email is already existed.');
+            }
+            else {
+                res.send('User successfully created.');
+            }
         });
     },
 
@@ -95,7 +91,7 @@ createuser: function (req, res) {
           }
         });
     }
-  };        //   if(err){
+         //   if(err){
               //      res.send(400, { error: "Wrong Password" });
               //   } else {
               //   res.send(404, { error: "User not Found" });
@@ -146,3 +142,5 @@ createuser: function (req, res) {
      
 //       }
 // };
+
+};

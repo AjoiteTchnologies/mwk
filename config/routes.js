@@ -53,34 +53,6 @@ module.exports.routes = {
     action: 'add'
   },
 
-
- '/user': {
-    controller: 'User',
-    action: 'index'
-  },
-
-  '/user/list': {
-    controller: 'User',
-    action: 'list'
-  },
-
-  '/user/signup': {
-    controller: 'User',
-    view: 'user/signup'
-  },
-
-
-  '/user/login': {
-    controller: 'User',
-    view: 'user/login'
-  },
-
- '/user/create': {
-    controller: 'User',
-    action: 'createuser'
-  },
-
-  
   '/cms/page/:pageId': {
     controller: 'Cms',
     action: 'view'
@@ -89,8 +61,7 @@ module.exports.routes = {
   '/cart' : {
     controller: 'cart',
     action: 'index'
-  }
-
+  },
 
   /***************************************************************************
   *                                                                          *

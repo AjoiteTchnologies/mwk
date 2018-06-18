@@ -53,16 +53,6 @@
 	display: inline-block;
 }
 
-.overlay {
-	display: none;
-	position: fixed;
-	background: rgba(0, 0, 0, 0.2);
-	width: 100%;
-	height: 100%;
-	z-index: 1;
-	top: 0;
-	left: 0;
-}
 /* login / signup css ends here */
 
 /* footer css starts here */
@@ -172,3 +162,26 @@
 		color: #333;
 	}
 /* breadcrumbs css ends here */
+
+/* popup css starts here */
+
+.overlay {
+	position: fixed;
+	background: rgba(0, 0, 0, 0.2);
+	width: 100%;
+	height: 100%;
+	z-index: 1;
+	top: 0;
+	left: 0;
+}
+
+.popup-data {
+	display: none;
+	position: fixed;
+    padding: 30px;
+    top: 50%;
+    left: 50%;
+    background: #fff;
+    z-index: 2;
+}
+/* popup css ends here */
