@@ -61,33 +61,8 @@ module.exports.routes = {
   '/cart' : {
     controller: 'cart',
     action: 'index'
-  }
-  
- '/user': {
-    controller: 'User',
-    action: 'index'
   },
 
-  '/user/list': {
-    controller: 'User',
-    action:'list'
-  },
-
-  // '/user/signup': {
-  //   controller: 'User',
-  //   view: 'user/signup'
-  // },
-
- '/user/create': {
-    controller: 'User',
-    action: 'createuser'
-  },
-
-  
-
-  
-
->>>>>>> sample-crud-indu
 
   /***************************************************************************
   *                                                                          *

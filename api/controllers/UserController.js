@@ -6,40 +6,49 @@
  */
 
 module.exports = {
-  
-index: function(req, res){
-	res.view();
-	sails.log('user');
-	},
 
-list: function(req, res){
-	sails.log('user');
-	User.find().exec(function(err, user){
-		if(err){
-			res.send(500, {error: 'Database error'});
-		}
-		res.view('user/list', {user:user});
-	});
+    list: function(req, res){
+    	sails.log('user');
+    	User.find().exec(function(err, user){
+    		if(err){
+    			res.send(500, {error: 'Database error'});
+    		}
+    		res.view('user/list', {user:user});
+    	});
 
-}, 
- 
- signup: function(req, res) {
-    res.view('user/signup');
- },
-
-createuser: function (req, res) {
-        var username = req.body.username;
-        var password = req.body.password;
-        var email = req.body.email;
-        var mobile = req.body.mobile;
-
-        User.create({username:username, password:password, email:email, mobile:mobile}).exec(function(err){
+    }, 
+     
+    create: function (req, res) {
+        var data = req.body;
+        // sails.log(data);
+        User.findOrCreate({email : req.body.email}, {data})
+        .exec(function(err, user){
         	if(err){
         		res.send(500, {error: 'Database error'});
         	}
+        	else if(user){
+                res.send('User with this email is already existed.');
+            }
+            else {
+                res.send('User successfully created.');
+            }
+        });
+    },
 
-        	res.redirect('user/list');
-        	
+    find : function(req, res){
+        var email = req.body.email;
+
+        User.find({email : email})
+        .exec(function(err, user){
+            if(err){
+                sails.log('error');
+                res.send('User not found.');
+            }
+            else{
+                sails.log(req.session.id);
+                res.send(user);
+            }
         });
     }
+
 };

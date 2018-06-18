@@ -143,7 +143,7 @@ try {
 					}
 				}
 			});
-			console.log(str);
+			// console.log(str);
 			return str;
 		}
 	
