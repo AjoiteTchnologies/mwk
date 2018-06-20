@@ -32,15 +32,7 @@ module.exports = {
 //   }
 // }
 
- // signup: function(req, res) {
- //    res.view('user/signup');
- // },
-
- // login: function(req, res) {
- //    res.view('user/login');
- // },
-
-     
+    
     create: function (req, res) {
         var data = req.body;
         // sails.log(data);
@@ -58,89 +50,46 @@ module.exports = {
         });
     },
 
-    dologin: function (req, res) {
-      var user = {};
+    find: function (req, res) {
+      var data = [];
 
-         User.find({username: req.param("username")}).exec(function(err, reses) {
-          if(err){
-            console.log('database error');
-          } else {
-            if(!_.isEmpty(reses)){
-              reses.forEach(function(res){
-              User.find({$and: [{id: {$in: [res.id]}}, {password: req.param("password")}]}).exec(function(err, response) {
+      User.find({email: req.body.email}).exec(function(err, user) {
+        if(err){
+          sails.log('database error');
+        } else {
+            if(_.isEmpty(user)){
+              res.send('Email Id not registered');
+              console.log("Email Id not registered");
+             } else {
+              for(var i=0; i<user.length; i++) {
+                data.push(user[i].id);
+              }
+              User.find({$and: [{id: {$in: data}}, {password: req.body.password}]}).exec(function(err, response) {
                 if(err){
                   console.log('database error');
                 } else {
                   if(!_.isEmpty(response)){
-                    user.name=response[0].username;
-                    user.email =response[0].email;
-                    user.mobile=response[0].mobile;
-                    console.log(user.email);
-                    
+                    console.log(response);
+                    req.session.isLoggedIn = true;
+                    req.session.userId = response[0].id;
+                    req.session.userName = response[0].username;
+                    res.send(response);
                   } else {
-                    console.log('Wrong password');
+                    res.send('Wrong Password');
+                    console.log("wrong pass");
                   }
                 }
               });  
-
-              console.log(res.mobile);
-            })
-            } else {
-              console.log('User not found');       
             }
-          }
-        });
+        }
+      });
+    },
+
+    logout: function(req, res){
+      if(req.session.isLoggedIn == true){
+        res.send('done');
+        sails.log('done')
+      }
     }
-         //   if(err){
-              //      res.send(400, { error: "Wrong Password" });
-              //   } else {
-              //   res.send(404, { error: "User not Found" });
-              //   }
-              // });
-              //loginsuccess = true;
-             //req.session.authenticated = true; 
-             //req.session.userId = user.id;
-             // console.log(user.name);
-             // console.log(user.email);
-             // console.log(user.mobile);
-           // res.redirect('index/index');
-            
-
-          //}
-          
-       
-
-// // User.find({$and: [{username: username}, {password: password}]}).exec(function(err, response) {
-//           if(err){
-//             res.send(500, {error: 'Database error'});
-//           } else {
-//             if(!_.isEmpty(response)){
-//               user.name=response[0].username;
-//               user.email =response[0].email;
-//               user.mobile=response[0].mobile;
-                           
-
-//               // user.find({password: password}, function(err, success){
-//               //   if(err){
-//               //      res.send(400, { error: "Wrong Password" });
-//               //   } else {
-//               //   res.send(404, { error: "User not Found" });
-//               //   }
-//               // });
-//               //loginsuccess = true;
-//              //req.session.authenticated = true; 
-//              //req.session.userId = user.id;
-//              console.log(user.name);
-//              console.log(user.email);
-//              console.log(user.mobile);
-//            // res.redirect('index/index');
-//             }
-
-//           }
-          
-//         });
-     
-//       }
-// };
-
+         
 };
