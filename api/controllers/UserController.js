@@ -16,7 +16,6 @@ module.exports = {
                 res.view('user/list', {user:user});
         });
     }, 
-
     create: function (req, res) {
 
         var data = req.body;
@@ -35,47 +34,44 @@ module.exports = {
         });
     },
 
-    dologin: function (req, res) {
-        var user = {};
+    find: function (req, res) {
+      var data = [];
 
-        User.find({username: req.param("username")}).exec(function(err, reses) {
-            if(err){
-                console.log('database error');
-                res.send('');
-            } 
-            else {
-                if(!_.isEmpty(reses)){
-                    reses.forEach(function(user){
-                        sails.log(user.id);
-                        User.find({$and: [{id: {$in: [user.id]}}, {password: req.param("password")}]})
-                        .exec(function(err, response) {
-                            if(err){
-                                console.log('database error1');
-                                res.send('');
-                            } 
-                            else {
-                                if(!_.isEmpty(response)){
-                                    user.name=response[0].username;
-                                    user.email =response[0].email;
-                                    user.mobile=response[0].mobile;
-                                    console.log(user.email);
-                                    res.send(user.email);
-                                } 
-                                else {
-                                    console.log('Wrong password');
-                                    res.send('');
-                                }
-                            }
-                        });
-                        console.log(user.mobile);
-                        res.send(user.mobile);
-                    })
-                } 
-                else {
-                    console.log('User not found');
-                    res.send('');       
+      User.find({email: req.body.email}).exec(function(err, user) {
+        if(err){
+          sails.log('database error');
+        } else {
+            if(_.isEmpty(user)){
+              res.send('Email Id not registered');
+              console.log("Email Id not registered");
+             } else {
+              for(var i=0; i<user.length; i++) {
+                data.push(user[i].id);
+              }
+              User.find({$and: [{id: {$in: data}}, {password: req.body.password}]}).exec(function(err, response) {
+                if(err){
+                  console.log('database error');
+                } else {
+                  if(!_.isEmpty(response)){
+                    console.log(response);
+                    req.session.isLoggedIn = true;
+                    req.session.userId = response[0].id;
+                    req.session.userName = response[0].username;
+                    res.send(response);
+                  } else {
+                    res.send('Wrong Password');
+                    console.log("wrong pass");
+                  }
                 }
+              });  
             }
-        });
+        }
+      });
+    },
+
+    logout: function(req, res){
+      if(req.session.isLoggedIn == true){
+        res.send('done');
+        sails.log('done')
+      }
     }
-};

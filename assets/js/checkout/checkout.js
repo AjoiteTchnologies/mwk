@@ -17,7 +17,7 @@ try {
 				var $data = {
 					username : $parent.find($('input[name=email]')).val()
 				}
-				sendAjax('/user/dologin', 'POST', $data, function(res){
+				sendAjax('/user/find', 'POST', $data, function(res){
 					if(res !== ''){
 						chkData.type = 'user';
 						console.log('There is a user with this mail Id.');

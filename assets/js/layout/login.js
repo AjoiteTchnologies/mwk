@@ -16,7 +16,8 @@ try {
 
 			if($id == 'login-form') {
 				$formData = {
-					'email' : $form.find($('input[name=email]')).val()
+					'email' : $form.find($('input[name=email]')).val(),
+					'password' : $form.find($('input[name=password]')).val()
 				}
 			}
 			else {
@@ -39,7 +40,10 @@ try {
 				response = sendAjax($url, 'POST', $formData, function(res){
 					if($id == 'login-form'){
 						if(res !== 'error'){
-							console.log(res);
+							popupClose($('.popup-data'));
+							$('.login').hide();
+							$('.logout').show();
+							$('.logged-user').text('Welcome ' +res[0].username);
 						}
 					}
 					else{
