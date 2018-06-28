@@ -1,0 +1,28 @@
+<section class="container">
+	<h1 class="page-heading">Checkout</h1>
+
+	<div class="chk-body">
+
+		<!-- checkout left steps starts here -->
+		<div class="chk-left">
+<%
+			var isLoggedIn = false;
+			var stepFirst = (isLoggedIn !== false) ? 'step-close' : ''; 
+			var stepSecond = (isLoggedIn !== false) ? '' : 'step-close';
+%>
+			<%- partial('partial/checkout-login.ejs', {stepFirst}) %>
+
+			<%- partial('partial/checkout-adrs.ejs', {stepSecond}) %>
+
+			<%- partial('partial/checkout-pmnt.ejs') %>
+		</div>
+		<!-- checkout left steps ends here -->
+
+		<!-- checkout right steps starts here -->
+		<div class="chk-right">
+		</div>
+		<!-- checkout right steps ends here -->
+
+	</div>
+
+</section>

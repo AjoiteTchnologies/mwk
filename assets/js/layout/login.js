@@ -22,7 +22,7 @@ try {
 			else {
 				var password = $form.find($('input[name=password]')).val(),
 					cPassword = $form.find($('input[name=confirmPassword]')).val();
-				if(password == cPassword){					
+				if(password == cPassword){
 					$formData = {
 						'fullname' : $form.find($('input[name=fullname]')).val(),
 						'email' : $form.find($('input[name=email]')).val(),
@@ -40,10 +40,6 @@ try {
 					if($id == 'login-form'){
 						if(res !== 'error'){
 							console.log(res);
-							// popupClose($('.popup-data'));
-							// $('.login').hide();
-							// $('.logout').show();
-							// $('.logged-user').text('Welcome' +res[0].fullname);
 						}
 					}
 					else{

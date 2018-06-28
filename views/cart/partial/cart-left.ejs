@@ -1,0 +1,37 @@
+<div class="cart-data">
+	<div class="cart-headings">
+		<span class="prd-name-img">Products</span>
+		<span class="prd-qty">Qty</span>
+		<span class="prd-total">Subtotal</span>
+	</div>
+<%
+	_.each(productData, function(key, value){
+%>
+		<div class="cart-products">
+			<span class="prd-name-img">
+				<span class="prd-img">
+					<img src="" / >
+				</span>
+				<span class="cart-prd-detail">
+					<span class="prd-name"><%- key.name %></span>
+					<span class="prd-price">₹ <%- key.price['discounted'] %></span>
+					<span>Delivery in : <%- key.avgDispatchTime['min'] %> - <%- key.avgDispatchTime['max'] %> Days</span>
+					<a href="javascript:void(0)" class="cart-remove">Remove</a>
+				</span>
+			</span>
+			<span class="prd-qty">
+				<input type="text" class="cart-qty number-only" data-sample="<%- key.sampleAvailable %>" name="qty" data-stock="<%- key.stock %>" data-moq="<%- key.moq %>" value="1" disabled>
+				<span class="cart-qchange">Edit</span>
+				<label class="error-msg"></label>
+			</span>
+			<span class="prd-total">₹ 48.00</span>
+		</div>
+<%
+	});
+%>
+	<div class="cart-actions">
+		<a href="javascript:void(0)" class="cart-btn">Continue Shopping</a>
+		<a href="javascript:void(0)" class="cart-btn">Clear Shopping Cart</a>
+	</div>
+
+</div>

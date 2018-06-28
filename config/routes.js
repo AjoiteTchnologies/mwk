@@ -63,6 +63,11 @@ module.exports.routes = {
     action: 'index'
   },
 
+  '/checkout' : {
+    controller: 'checkout',
+    action: 'index'
+  },
+
   /***************************************************************************
   *                                                                          *
   * Custom routes here...                                                    *

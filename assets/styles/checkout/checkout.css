@@ -1,0 +1,97 @@
+.chk-body {
+	display: flex;
+	align-items: center;
+}
+
+	.chk-left {
+		flex: 1 1 75%;
+		margin-right: 30px;
+	}
+
+		.chk-step {
+		    border: 1px solid #ccc;
+		    margin-bottom: 20px;
+		}
+
+			.step-head {
+			    background: #f6f6f6;
+			    padding: 15px;
+			    color: #fc2c7a;
+			    font-size: 16px;
+			    font-weight: normal;
+			    cursor: pointer;
+			}
+
+			.step-body {
+				padding: 20px;
+			}
+
+			.step-login {
+				display: flex;
+				align-items: center;
+			}
+
+				.step-login > div {
+					flex: 1 1 50%;
+					text-align: center;
+				}
+
+					.chk-subhead {
+					    color: #777;
+					    text-transform: uppercase;
+					    font-weight: normal;
+					    margin-bottom: 20px;
+					    font-size: 16px;
+					}
+
+					.step-adrs .form-group * {
+						display: block;						
+					}
+
+					.step-adrs .form-group input[type="text"],
+					.step-adrs .form-group select {
+						width: 100%;
+						margin: 5px 0;
+					}
+
+				.step-pmnt .radio-group {
+					width: 100%;
+				}
+
+					.step-pmnt .radio-group div {
+						margin-bottom: 20px;
+					}
+
+						.step-pmnt .radio-group label {
+							vertical-align: top;
+						}
+
+					.step-review table {
+						border: 1px solid #ccc;
+					}
+
+						.step-review table tr {
+							border-bottom: 1px solid #ccc;
+						}
+
+						.step-review thead tr,
+						.step-review tbody tr:last-child {
+							background-color: #f6f6f6;
+						}
+
+							.step-review table th,
+							.step-review table td {
+								padding: 10px;
+							}
+
+							.step-review table td {
+								border-right: 1px solid #ccc;
+							}
+				
+				.step-close {
+					display: none;
+				}
+
+	.chk-right {
+		flex: 1 1 20%;
+	}
